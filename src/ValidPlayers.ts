@@ -9,7 +9,6 @@ export type NumberAtLeast3 = number & { readonly __type: unique symbol }
 export const isNumberAtLeast3 = (n: number): n is NumberAtLeast3 => n >= 3
 
 export type ValidPlayers = Array<PlayerRole> & { readonly __type: unique symbol }
-
 export const isValidPlayers = (p: Array<PlayerRole>): p is ValidPlayers => (
   isNumberAtLeast3(p.length) &&
     A.filter(isImpostor)(p).length === 1 &&
