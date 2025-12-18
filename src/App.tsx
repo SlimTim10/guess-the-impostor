@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import type { Game } from './Game'
 import type { PlayerRole } from './PlayerRoles'
 import type { Round } from './Rounds'
 import { isRound } from './Rounds'
 import type { ValidPlayers } from './ValidPlayers'
 import { isValidPlayers } from './ValidPlayers'
+import type { SecretWord } from './Words'
 import { generateRandomSecretWord } from './Words'
 
 const App = () => {
-  const [count, setCount] = useState<number>(0)
-  const [somePlayerRole, _setSomePlayerRole] = useState<PlayerRole>('keeper')
   const [players, setPlayers] = useState<null | ValidPlayers>(null)
   const [round, setRound] = useState<null | Round>(null)
-  const [secretWord, _setSecretWord] = useState<string>(generateRandomSecretWord())
+  const [secretWord, _setSecretWord] = useState<SecretWord>(generateRandomSecretWord())
+  const [game, setGame] = useState<null | Game>(null)
 
   useEffect(() => {
     const xs: Array<PlayerRole> = ['keeper', 'keeper', 'imposter']
@@ -26,27 +27,26 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (players !== null) {
+      setGame({
+        players,
+        secretWord,
+      })
+    }
+  }, [players])
+
   return (
     <>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-        <p>
-          Player role: {somePlayerRole}
-        </p>
-        <p>
-          Players: {players}
-        </p>
         <p>
           Round: {round}
         </p>
         <p>
           Secret word: {secretWord}
+        </p>
+        <p>
+          Game: <code>{JSON.stringify(game)}</code>
         </p>
       </div>
     </>
