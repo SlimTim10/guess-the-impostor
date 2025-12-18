@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import type { PlayerRole } from './PlayerRoles'
 import type { ValidPlayers } from './ValidPlayers'
@@ -9,10 +9,12 @@ const App = () => {
   const [somePlayerRole, _setSomePlayerRole] = useState<PlayerRole>('keeper')
   const [players, setPlayers] = useState<null | ValidPlayers>(null)
 
-  const xs: Array<PlayerRole> = ['keeper', 'keeper', 'imposter']
-  if (isValidPlayers(xs)) {
-    setPlayers(xs)
-  }
+  useEffect(() => {
+    const xs: Array<PlayerRole> = ['keeper', 'keeper', 'imposter']
+    if (isValidPlayers(xs)) {
+      setPlayers(xs)
+    }
+  }, [])
 
   return (
     <>
