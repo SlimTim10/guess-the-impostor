@@ -5,12 +5,14 @@ import type { Round } from './Rounds'
 import { isRound } from './Rounds'
 import type { ValidPlayers } from './ValidPlayers'
 import { isValidPlayers } from './ValidPlayers'
+import { generateRandomSecretWord } from './Words'
 
 const App = () => {
   const [count, setCount] = useState<number>(0)
   const [somePlayerRole, _setSomePlayerRole] = useState<PlayerRole>('keeper')
   const [players, setPlayers] = useState<null | ValidPlayers>(null)
   const [round, setRound] = useState<null | Round>(null)
+  const [secretWord, _setSecretWord] = useState<string>(generateRandomSecretWord())
 
   useEffect(() => {
     const xs: Array<PlayerRole> = ['keeper', 'keeper', 'imposter']
@@ -42,6 +44,9 @@ const App = () => {
         </p>
         <p>
           Round: {round}
+        </p>
+        <p>
+          Secret word: {secretWord}
         </p>
       </div>
     </>
