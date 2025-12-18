@@ -1,4 +1,4 @@
-export type PlayerRole = 'imposter' | 'keeper'
+export type PlayerRole = 'impostor' | 'keeper'
 
-export const isImposter = (p: PlayerRole): p is 'imposter' => p === 'imposter'
+export const isImpostor = (p: PlayerRole): p is 'impostor' => p === 'impostor'
 export const isKeeper = (p: PlayerRole): p is 'keeper' => p === 'keeper'

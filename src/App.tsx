@@ -16,7 +16,7 @@ const App = () => {
   const [game, setGame] = useState<null | Game>(null)
 
   useEffect(() => {
-    const xs: Array<PlayerRole> = ['keeper', 'keeper', 'imposter']
+    const xs: Array<PlayerRole> = ['keeper', 'keeper', 'impostor']
     if (isValidPlayers(xs)) {
       setPlayers(xs)
     }
