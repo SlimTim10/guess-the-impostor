@@ -36,9 +36,5 @@ export const createPlayers = (n: NumberAtLeast3): ValidPlayers => {
 }
 
 export const randomizeValidPlayers = (xs: ValidPlayers): ValidPlayers => {
-  if (isNumberAtLeast3(xs.length)) {
-    return createPlayers(xs.length)
-  } else {
-    throw 'Error: randomizeValidPlayers'
-  }
+  return createPlayers(xs.length as NumberAtLeast3)
 }
