@@ -27,6 +27,39 @@ const App = () => {
     case 'confirm-restart':
       return <ConfirmRestart />
       break;
+    case 'how-to-play':
+      throw 'Not yet implemented'
+      break;
+    case 'show-role':
+      throw 'Not yet implemented'
+      break;
+    case 'showing-role':
+      throw 'Not yet implemented'
+      break;
+    case 'done-showing-role':
+      throw 'Not yet implemented'
+      break;
+    case 'pass-to-next-player':
+      throw 'Not yet implemented'
+      break;
+    case 'say-a-word':
+      throw 'Not yet implemented'
+      break;
+    case 'voting':
+      throw 'Not yet implemented'
+      break;
+    case 'ask-was-majority-vote-impostor':
+      throw 'Not yet implemented'
+      break;
+    case 'impostor-guessing':
+      throw 'Not yet implemented'
+      break;
+    case 'impostor-wins':
+      throw 'Not yet implemented'
+      break;
+    case 'keepers-win':
+      throw 'Not yet implemented'
+      break;
     default:
       throw 'Error: invalid view'
   }
