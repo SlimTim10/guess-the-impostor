@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-/* import type { Game } from './Game'
- * import type { PlayerRole } from './PlayerRoles'
- * import type { Round } from './Rounds'
- * import { isRound } from './Rounds'
- * import type { ValidPlayers } from './ValidPlayers'
- * import { isValidPlayers } from './ValidPlayers' */
+import type { Game } from './Game'
+import { startGame } from './Game'
+import type { NumberOfPlayers } from './ValidPlayers'
 import type { View } from './Views'
 /* import type { SecretWord } from './Words'
  * import { generateRandomSecretWord } from './Words' */
 import ConfirmRestart from './Views/ConfirmRestart'
 import HowToPlay from './Views/HowToPlay'
 import Initial from './Views/Initial'
+import ShowRole from './Views/ShowRole'
 
 const App = () => {
   const [view, setView] = useState<View>('initial')
 
   // Testing views
   useEffect(() => {
-    setView('confirm-restart')
+    setView('show-role')
   }, [])
 
   switch (view) {
@@ -32,7 +30,8 @@ const App = () => {
       return <HowToPlay />
       break;
     case 'show-role':
-      throw 'Not yet implemented'
+      const game: Game = startGame(3 as NumberOfPlayers)
+      return <ShowRole playerTurn={1} game={game} />
       break;
     case 'showing-role':
       throw 'Not yet implemented'
