@@ -5,17 +5,22 @@ import * as R from 'fp-ts/Random'
 import type { PlayerRole } from './PlayerRoles'
 import { isImpostor, isKeeper } from './PlayerRoles'
 
-export type NumberAtLeast3 = number & { readonly __type: unique symbol }
-export const isNumberAtLeast3 = (n: number): n is NumberAtLeast3 => n >= 3
+export const MIN_PLAYERS = 3
 
-export type ValidPlayers = Array<PlayerRole> & { readonly __type: unique symbol }
+export type NumberOfPlayers = number & { readonly __type: unique symbol }
+export const isNumberOfPlayers = (n: number): n is NumberOfPlayers => (
+  n >= MIN_PLAYERS
+)
+
+export type ValidPlayers =
+  Array<PlayerRole> & { readonly __type: unique symbol }
 export const isValidPlayers = (p: Array<PlayerRole>): p is ValidPlayers => (
-  isNumberAtLeast3(p.length) &&
+  isNumberOfPlayers(p.length) &&
     A.filter(isImpostor)(p).length === 1 &&
     A.filter(isKeeper)(p).length === p.length - 1
 )
 
-export const createPlayers = (n: NumberAtLeast3): ValidPlayers => {
+export const createPlayers = (n: NumberOfPlayers): ValidPlayers => {
   const keepers: Array<PlayerRole> = A.replicate(n, 'keeper')
   const i: number = R.randomInt(0, keepers.length - 1)()
   return pipe(
@@ -36,5 +41,5 @@ export const createPlayers = (n: NumberAtLeast3): ValidPlayers => {
 }
 
 export const randomizeValidPlayers = (xs: ValidPlayers): ValidPlayers => {
-  return createPlayers(xs.length as NumberAtLeast3)
+  return createPlayers(xs.length as NumberOfPlayers)
 }

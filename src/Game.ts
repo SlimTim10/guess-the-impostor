@@ -1,4 +1,4 @@
-import type { NumberAtLeast3, ValidPlayers } from './ValidPlayers'
+import type { NumberOfPlayers, ValidPlayers } from './ValidPlayers'
 import { createPlayers, randomizeValidPlayers } from './ValidPlayers'
 import type { SecretWord } from './Words'
 import { generateRandomSecretWord, generateNewSecretWord } from './Words'
@@ -8,7 +8,7 @@ export type Game = {
   secretWord: SecretWord;
 }
 
-export const startGame = (x: NumberAtLeast3): Game => ({
+export const startGame = (x: NumberOfPlayers): Game => ({
   players: createPlayers(x),
   secretWord: generateRandomSecretWord(),
 })

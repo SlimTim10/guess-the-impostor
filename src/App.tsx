@@ -8,6 +8,7 @@ import type { ValidPlayers } from './ValidPlayers'
 import { isValidPlayers } from './ValidPlayers'
 import type { SecretWord } from './Words'
 import { generateRandomSecretWord } from './Words'
+import Initial from './Views/Initial'
 
 const App = () => {
   const [players, setPlayers] = useState<null | ValidPlayers>(null)
@@ -38,7 +39,13 @@ const App = () => {
 
   return (
     <>
+      <div>
+        <Initial />
+      </div>
       <div className="card">
+        <p>
+          Testing
+        </p>
         <p>
           Round: {round}
         </p>
