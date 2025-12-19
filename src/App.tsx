@@ -9,6 +9,7 @@ import './App.css'
 import type { View } from './Views'
 /* import type { SecretWord } from './Words'
  * import { generateRandomSecretWord } from './Words' */
+import ConfirmRestart from './Views/ConfirmRestart'
 import Initial from './Views/Initial'
 
 const App = () => {
@@ -16,12 +17,15 @@ const App = () => {
 
   // Testing views
   useEffect(() => {
-    setView('show-role')
+    setView('confirm-restart')
   }, [])
 
   switch (view) {
     case 'initial':
       return <Initial />
+      break;
+    case 'confirm-restart':
+      return <ConfirmRestart />
       break;
     default:
       throw 'Error: invalid view'
