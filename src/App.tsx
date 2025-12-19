@@ -10,6 +10,7 @@ import type { View } from './Views'
 /* import type { SecretWord } from './Words'
  * import { generateRandomSecretWord } from './Words' */
 import ConfirmRestart from './Views/ConfirmRestart'
+import HowToPlay from './Views/HowToPlay'
 import Initial from './Views/Initial'
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
       return <ConfirmRestart />
       break;
     case 'how-to-play':
-      throw 'Not yet implemented'
+      return <HowToPlay />
       break;
     case 'show-role':
       throw 'Not yet implemented'
