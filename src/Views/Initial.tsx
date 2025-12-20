@@ -14,6 +14,10 @@ const Initial = () => {
     }
   }
 
+  const handleStartGame = (_e: React.MouseEvent<HTMLButtonElement>): void => {
+    console.log('handleStartGame')
+  }
+
   return (
     <>
       <h1>Guess the Impostor</h1>
@@ -29,6 +33,9 @@ const Initial = () => {
           onChange={handlePlayersChange}
           min={MIN_PLAYERS}
           max="99" />
+      </p>
+      <p>
+        <button onClick={handleStartGame}>Play</button>
       </p>
     </>
   )
