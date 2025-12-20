@@ -20,14 +20,21 @@ import ShowingRole from './Views/ShowingRole'
 import Voting from './Views/Voting'
 
 const App = () => {
-  const [view, _setView] = React.useState<View>('initial')
+  const [view, setView] = React.useState<View>('initial')
+  const [playerTurn, setPlayerTurn] = React.useState<number>(1)
+  const [game, setGame] = React.useState<Game | null>(null)
 
-  const game: Game = startGame(3 as NumberOfPlayers)
   const round: Round = 1 as Round
+
+  const handlePlay = (numPlayers: NumberOfPlayers): void => {
+    setView('show-role')
+    setPlayerTurn(1)
+    setGame(startGame(numPlayers))
+  }
 
   switch (view) {
     case 'initial':
-      return <Initial />
+      return <Initial handlePlay={handlePlay} />
       break;
     case 'confirm-restart':
       return <ConfirmRestart />
@@ -36,34 +43,34 @@ const App = () => {
       return <HowToPlay />
       break;
     case 'show-role':
-      return <ShowRole game={game} playerTurn={1} />
+      return (game !== null) && <ShowRole game={game} playerTurn={playerTurn} />
       break;
     case 'showing-role':
-      return <ShowingRole game={game} playerTurn={1} />
+      return (game !== null) && <ShowingRole game={game} playerTurn={playerTurn} />
       break;
     case 'done-showing-role':
-      return <DoneShowingRole game={game} playerTurn={1} />
+      return (game !== null) && <DoneShowingRole game={game} playerTurn={playerTurn} />
       break;
     case 'pass-to-next-player':
-      return <PassToNextPlayer game={game} playerTurn={1} />
+      return (game !== null) && <PassToNextPlayer game={game} playerTurn={playerTurn} />
       break;
     case 'say-a-word':
-      return <SayAWord game={game} round={round} />
+      return (game !== null) && <SayAWord game={game} round={round} />
       break;
     case 'voting':
-      return <Voting game={game} round={round} />
+      return (game !== null) && <Voting game={game} round={round} />
       break;
     case 'ask-was-majority-vote-impostor':
-      return <AskWasMajorityVoteImpostor game={game} />
+      return (game !== null) && <AskWasMajorityVoteImpostor game={game} />
       break;
     case 'impostor-guessing':
-      return <ImpostorGuessing game={game} />
+      return (game !== null) && <ImpostorGuessing game={game} />
       break;
     case 'impostor-wins':
-      return <ImpostorWins game={game} />
+      return (game !== null) && <ImpostorWins game={game} />
       break;
     case 'keepers-win':
-      return <KeepersWin game={game} />
+      return (game !== null) && <KeepersWin game={game} />
       break;
     default:
       throw view satisfies never;

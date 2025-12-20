@@ -2,7 +2,11 @@ import React from 'react'
 import type { NumberOfPlayers } from '../ValidPlayers'
 import { MIN_PLAYERS, isNumberOfPlayers } from '../ValidPlayers'
 
-const Initial = () => {
+type Props = {
+  handlePlay: (x: NumberOfPlayers) => void;
+}
+
+const Initial = ({ handlePlay }: Props) => {
   const playersInputId = React.useId()
   const [numPlayers, setNumPlayers] =
     React.useState<NumberOfPlayers>(MIN_PLAYERS as NumberOfPlayers)
@@ -14,8 +18,8 @@ const Initial = () => {
     }
   }
 
-  const handlePlay = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    console.log('handlePlay')
+  const handlePlayButton = (_e: React.MouseEvent<HTMLButtonElement>): void => {
+    handlePlay(numPlayers)
   }
 
   return (
@@ -35,7 +39,7 @@ const Initial = () => {
           max="99" />
       </p>
       <p>
-        <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePlayButton}>Play</button>
       </p>
     </>
   )
