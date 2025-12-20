@@ -9,6 +9,7 @@ import AskWasMajorityVoteImpostor from './Views/AskWasMajorityVoteImpostor'
 import ConfirmRestart from './Views/ConfirmRestart'
 import DoneShowingRole from './Views/DoneShowingRole'
 import HowToPlay from './Views/HowToPlay'
+import ImpostorGuessing from './Views/ImpostorGuessing'
 import Initial from './Views/Initial'
 import PassToNextPlayer from './Views/PassToNextPlayer'
 import SayAWord from './Views/SayAWord'
@@ -24,7 +25,7 @@ const App = () => {
 
   // Testing views
   useEffect(() => {
-    setView('ask-was-majority-vote-impostor')
+    setView('impostor-guessing')
   }, [])
 
   switch (view) {
@@ -59,7 +60,7 @@ const App = () => {
       return <AskWasMajorityVoteImpostor game={game} />
       break;
     case 'impostor-guessing':
-      throw 'Not yet implemented'
+      return <ImpostorGuessing game={game} />
       break;
     case 'impostor-wins':
       throw 'Not yet implemented'
