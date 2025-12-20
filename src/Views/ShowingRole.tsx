@@ -23,7 +23,7 @@ const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
       {role === 'keeper' && (
         <h2>You are not the impostor. The secret word is: {game.secretWord}</h2>
       )}
-      Time left: {timeLeft}
+      <p>Time left: {timeLeft}</p>
     </>
   )
 }
