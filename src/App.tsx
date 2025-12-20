@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import type { Game } from './Game'
 import { startGame } from './Game'
+import type { Round } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
 import type { View } from './Views'
-/* import type { SecretWord } from './Words'
- * import { generateRandomSecretWord } from './Words' */
 import ConfirmRestart from './Views/ConfirmRestart'
 import DoneShowingRole from './Views/DoneShowingRole'
 import HowToPlay from './Views/HowToPlay'
 import Initial from './Views/Initial'
+import PassToNextPlayer from './Views/PassToNextPlayer'
+import SayAWord from './Views/SayAWord'
 import ShowRole from './Views/ShowRole'
 import ShowingRole from './Views/ShowingRole'
 
@@ -17,10 +18,11 @@ const App = () => {
   const [view, setView] = useState<View>('initial')
 
   const game: Game = startGame(3 as NumberOfPlayers)
+  const round: Round = 1 as Round
 
   // Testing views
   useEffect(() => {
-    setView('done-showing-role')
+    setView('say-a-word')
   }, [])
 
   switch (view) {
@@ -34,19 +36,19 @@ const App = () => {
       return <HowToPlay />
       break;
     case 'show-role':
-      return <ShowRole playerTurn={1} game={game} />
+      return <ShowRole game={game} playerTurn={1} />
       break;
     case 'showing-role':
-      return <ShowingRole playerTurn={1} game={game} />
+      return <ShowingRole game={game} playerTurn={1} />
       break;
     case 'done-showing-role':
-      return <DoneShowingRole playerTurn={1} game={game} />
+      return <DoneShowingRole game={game} playerTurn={1} />
       break;
     case 'pass-to-next-player':
-      throw 'Not yet implemented'
+      return <PassToNextPlayer game={game} playerTurn={1} />
       break;
     case 'say-a-word':
-      throw 'Not yet implemented'
+      return <SayAWord game={game} round={round} />
       break;
     case 'voting':
       throw 'Not yet implemented'
