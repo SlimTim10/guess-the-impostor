@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import './App.css'
 import type { Game } from './Game'
 import { startGame } from './Game'
@@ -20,15 +20,10 @@ import ShowingRole from './Views/ShowingRole'
 import Voting from './Views/Voting'
 
 const App = () => {
-  const [view, setView] = useState<View>('initial')
+  const [view, _setView] = React.useState<View>('initial')
 
   const game: Game = startGame(3 as NumberOfPlayers)
   const round: Round = 1 as Round
-
-  // Testing views
-  useEffect(() => {
-    setView('keepers-win')
-  }, [])
 
   switch (view) {
     case 'initial':
