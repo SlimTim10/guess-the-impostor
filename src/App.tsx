@@ -71,7 +71,7 @@ const App = () => {
       return <KeepersWin game={game} />
       break;
     default:
-      throw 'Error: invalid view'
+      throw view satisfies never;
   }
 }
 
