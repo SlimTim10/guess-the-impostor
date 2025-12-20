@@ -10,7 +10,9 @@ import ConfirmRestart from './Views/ConfirmRestart'
 import DoneShowingRole from './Views/DoneShowingRole'
 import HowToPlay from './Views/HowToPlay'
 import ImpostorGuessing from './Views/ImpostorGuessing'
+import ImpostorWins from './Views/ImpostorWins'
 import Initial from './Views/Initial'
+import KeepersWin from './Views/KeepersWin'
 import PassToNextPlayer from './Views/PassToNextPlayer'
 import SayAWord from './Views/SayAWord'
 import ShowRole from './Views/ShowRole'
@@ -25,7 +27,7 @@ const App = () => {
 
   // Testing views
   useEffect(() => {
-    setView('impostor-guessing')
+    setView('keepers-win')
   }, [])
 
   switch (view) {
@@ -63,10 +65,10 @@ const App = () => {
       return <ImpostorGuessing game={game} />
       break;
     case 'impostor-wins':
-      throw 'Not yet implemented'
+      return <ImpostorWins game={game} />
       break;
     case 'keepers-win':
-      throw 'Not yet implemented'
+      return <KeepersWin game={game} />
       break;
     default:
       throw 'Error: invalid view'
