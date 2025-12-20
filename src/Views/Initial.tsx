@@ -14,8 +14,8 @@ const Initial = () => {
     }
   }
 
-  const handleStartGame = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    console.log('handleStartGame')
+  const handlePlay = (_e: React.MouseEvent<HTMLButtonElement>): void => {
+    console.log('handlePlay')
   }
 
   return (
@@ -35,7 +35,7 @@ const Initial = () => {
           max="99" />
       </p>
       <p>
-        <button onClick={handleStartGame}>Play</button>
+        <button onClick={handlePlay}>Play</button>
       </p>
     </>
   )
