@@ -10,13 +10,16 @@ import ConfirmRestart from './Views/ConfirmRestart'
 import HowToPlay from './Views/HowToPlay'
 import Initial from './Views/Initial'
 import ShowRole from './Views/ShowRole'
+import ShowingRole from './Views/ShowingRole'
 
 const App = () => {
   const [view, setView] = useState<View>('initial')
 
+  const game: Game = startGame(3 as NumberOfPlayers)
+
   // Testing views
   useEffect(() => {
-    setView('show-role')
+    setView('showing-role')
   }, [])
 
   switch (view) {
@@ -30,11 +33,10 @@ const App = () => {
       return <HowToPlay />
       break;
     case 'show-role':
-      const game: Game = startGame(3 as NumberOfPlayers)
       return <ShowRole playerTurn={1} game={game} />
       break;
     case 'showing-role':
-      throw 'Not yet implemented'
+      return <ShowingRole playerTurn={1} game={game} />
       break;
     case 'done-showing-role':
       throw 'Not yet implemented'
