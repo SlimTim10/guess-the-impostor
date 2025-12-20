@@ -7,6 +7,7 @@ import type { View } from './Views'
 /* import type { SecretWord } from './Words'
  * import { generateRandomSecretWord } from './Words' */
 import ConfirmRestart from './Views/ConfirmRestart'
+import DoneShowingRole from './Views/DoneShowingRole'
 import HowToPlay from './Views/HowToPlay'
 import Initial from './Views/Initial'
 import ShowRole from './Views/ShowRole'
@@ -19,7 +20,7 @@ const App = () => {
 
   // Testing views
   useEffect(() => {
-    setView('showing-role')
+    setView('done-showing-role')
   }, [])
 
   switch (view) {
@@ -39,7 +40,7 @@ const App = () => {
       return <ShowingRole playerTurn={1} game={game} />
       break;
     case 'done-showing-role':
-      throw 'Not yet implemented'
+      return <DoneShowingRole playerTurn={1} game={game} />
       break;
     case 'pass-to-next-player':
       throw 'Not yet implemented'
