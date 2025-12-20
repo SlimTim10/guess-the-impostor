@@ -13,6 +13,7 @@ import PassToNextPlayer from './Views/PassToNextPlayer'
 import SayAWord from './Views/SayAWord'
 import ShowRole from './Views/ShowRole'
 import ShowingRole from './Views/ShowingRole'
+import Voting from './Views/Voting'
 
 const App = () => {
   const [view, setView] = useState<View>('initial')
@@ -22,7 +23,7 @@ const App = () => {
 
   // Testing views
   useEffect(() => {
-    setView('say-a-word')
+    setView('voting')
   }, [])
 
   switch (view) {
@@ -51,7 +52,7 @@ const App = () => {
       return <SayAWord game={game} round={round} />
       break;
     case 'voting':
-      throw 'Not yet implemented'
+      return <Voting game={game} round={round} />
       break;
     case 'ask-was-majority-vote-impostor':
       throw 'Not yet implemented'
