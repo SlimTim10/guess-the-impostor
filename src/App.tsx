@@ -37,7 +37,7 @@ const App = () => {
     setGame(startGame(numPlayers))
   }
 
-  const viewComponent: React.ReactElement =
+  const viewComponent: React.ReactElement = (
     view === 'initial' ?
     <Initial play={play} openHowToPlay={openHowToPlay} />
     : view === 'confirm-restart' ?
@@ -63,11 +63,21 @@ const App = () => {
     : view === 'keepers-win' && game !== null ?
     <KeepersWin game={game} openHowToPlay={openHowToPlay} />
     : <></>
+  )
 
   return (
     <>
       {viewComponent}
-      <HowToPlay ref={howToPlayRef} />
+      {['initial',
+        'show-role',
+        'done-showing-role',
+        'say-a-word',
+        'voting',
+        'ask-was-majority-vote-impostor',
+        'impostor-guessing',
+        'impostor-wins',
+        'keepers-win'].includes(view) &&
+       <HowToPlay ref={howToPlayRef} />}
     </>
   )
 
