@@ -43,25 +43,25 @@ const App = () => {
     : view === 'confirm-restart' ?
     <ConfirmRestart />
     : view === 'show-role' && game !== null ?
-    <ShowRole game={game} playerTurn={playerTurn} />
+    <ShowRole game={game} playerTurn={playerTurn} openHowToPlay={openHowToPlay} />
     : view === 'showing-role' && game !== null ?
     <ShowingRole game={game} playerTurn={playerTurn} />
     : view === 'done-showing-role' && game !== null ?
-    <DoneShowingRole game={game} playerTurn={playerTurn} />
+    <DoneShowingRole game={game} playerTurn={playerTurn} openHowToPlay={openHowToPlay} />
     : view === 'pass-to-next-player' && game !== null ?
     <PassToNextPlayer game={game} playerTurn={playerTurn} />
     : view === 'say-a-word' && game !== null ?
-    <SayAWord game={game} round={round} />
+    <SayAWord game={game} round={round} openHowToPlay={openHowToPlay} />
     : view === 'voting' && game !== null ?
-    <Voting game={game} round={round} />
+    <Voting game={game} round={round} openHowToPlay={openHowToPlay} />
     : view === 'ask-was-majority-vote-impostor' && game !== null ?
-    <AskWasMajorityVoteImpostor game={game} />
+    <AskWasMajorityVoteImpostor game={game} openHowToPlay={openHowToPlay} />
     : view === 'impostor-guessing' && game !== null ?
-    <ImpostorGuessing game={game} />
+    <ImpostorGuessing game={game} openHowToPlay={openHowToPlay} />
     : view === 'impostor-wins' && game !== null ?
-    <ImpostorWins game={game} />
+    <ImpostorWins game={game} openHowToPlay={openHowToPlay} />
     : view === 'keepers-win' && game !== null ?
-    <KeepersWin game={game} />
+    <KeepersWin game={game} openHowToPlay={openHowToPlay} />
     : <></>
 
   return (

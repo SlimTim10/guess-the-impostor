@@ -6,9 +6,10 @@ import { ROUND_LIMIT } from '../Rounds'
 type Props = {
   game: Game;
   round: Round;
+  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Voting = ({ game, round }: Props): React.ReactElement => {
+const Voting = ({ game, round, openHowToPlay }: Props): React.ReactElement => {
   console.log(game) // dummy usage
   return (
     <>
@@ -24,6 +25,9 @@ const Voting = ({ game, round }: Props): React.ReactElement => {
         <h1>This is your last chance!</h1>
       </>
     )}
+    <div>
+      <button onClick={openHowToPlay}>How to play</button>
+    </div>
     </>
   )
 }
