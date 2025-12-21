@@ -1,7 +1,6 @@
 export type View =
   'initial' |
   'confirm-restart' |
-  'how-to-play' |
   'show-role' |
   'showing-role' |
   'done-showing-role' |

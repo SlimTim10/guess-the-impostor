@@ -23,58 +23,54 @@ const App = () => {
   const [view, setView] = React.useState<View>('initial')
   const [playerTurn, setPlayerTurn] = React.useState<number>(1)
   const [game, setGame] = React.useState<Game | null>(null)
+  const howToPlayRef = React.useRef<HTMLDialogElement>(null)
 
   const round: Round = 1 as Round
 
-  const handlePlay = (numPlayers: NumberOfPlayers): void => {
+  const openHowToPlay = (_e: React.MouseEvent<HTMLButtonElement>): void => {
+    howToPlayRef.current?.showModal()
+  }
+
+  const play = (numPlayers: NumberOfPlayers): void => {
     setView('show-role')
     setPlayerTurn(1)
     setGame(startGame(numPlayers))
   }
 
-  switch (view) {
-    case 'initial':
-      return <Initial handlePlay={handlePlay} />
-      break;
-    case 'confirm-restart':
-      return <ConfirmRestart />
-      break;
-    case 'how-to-play':
-      return <HowToPlay />
-      break;
-    case 'show-role':
-      return (game !== null) && <ShowRole game={game} playerTurn={playerTurn} />
-      break;
-    case 'showing-role':
-      return (game !== null) && <ShowingRole game={game} playerTurn={playerTurn} />
-      break;
-    case 'done-showing-role':
-      return (game !== null) && <DoneShowingRole game={game} playerTurn={playerTurn} />
-      break;
-    case 'pass-to-next-player':
-      return (game !== null) && <PassToNextPlayer game={game} playerTurn={playerTurn} />
-      break;
-    case 'say-a-word':
-      return (game !== null) && <SayAWord game={game} round={round} />
-      break;
-    case 'voting':
-      return (game !== null) && <Voting game={game} round={round} />
-      break;
-    case 'ask-was-majority-vote-impostor':
-      return (game !== null) && <AskWasMajorityVoteImpostor game={game} />
-      break;
-    case 'impostor-guessing':
-      return (game !== null) && <ImpostorGuessing game={game} />
-      break;
-    case 'impostor-wins':
-      return (game !== null) && <ImpostorWins game={game} />
-      break;
-    case 'keepers-win':
-      return (game !== null) && <KeepersWin game={game} />
-      break;
-    default:
-      throw view satisfies never;
-  }
+  const viewComponent: React.ReactElement =
+    view === 'initial' ?
+    <Initial play={play} openHowToPlay={openHowToPlay} />
+    : view === 'confirm-restart' ?
+    <ConfirmRestart />
+    : view === 'show-role' && game !== null ?
+    <ShowRole game={game} playerTurn={playerTurn} />
+    : view === 'showing-role' && game !== null ?
+    <ShowingRole game={game} playerTurn={playerTurn} />
+    : view === 'done-showing-role' && game !== null ?
+    <DoneShowingRole game={game} playerTurn={playerTurn} />
+    : view === 'pass-to-next-player' && game !== null ?
+    <PassToNextPlayer game={game} playerTurn={playerTurn} />
+    : view === 'say-a-word' && game !== null ?
+    <SayAWord game={game} round={round} />
+    : view === 'voting' && game !== null ?
+    <Voting game={game} round={round} />
+    : view === 'ask-was-majority-vote-impostor' && game !== null ?
+    <AskWasMajorityVoteImpostor game={game} />
+    : view === 'impostor-guessing' && game !== null ?
+    <ImpostorGuessing game={game} />
+    : view === 'impostor-wins' && game !== null ?
+    <ImpostorWins game={game} />
+    : view === 'keepers-win' && game !== null ?
+    <KeepersWin game={game} />
+    : <></>
+
+  return (
+    <>
+      {viewComponent}
+      <HowToPlay ref={howToPlayRef} />
+    </>
+  )
+
 }
 
 export default App
