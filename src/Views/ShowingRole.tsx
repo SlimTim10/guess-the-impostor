@@ -5,11 +5,16 @@ import type { PlayerRole } from '../PlayerRoles'
 type Props = {
   game: Game
   playerTurn: number
+  doneShowingRole: () => void
 }
 
 const SECONDS_TO_SHOW_ROLE: number = 5
 
-const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
+const ShowingRole = ({
+  game,
+  playerTurn,
+  doneShowingRole,
+}: Props): React.ReactElement => {
   const role: PlayerRole = game.players[playerTurn - 1]
   const [timeLeft, setTimeLeft] = React.useState<number>(SECONDS_TO_SHOW_ROLE)
 
@@ -32,6 +37,12 @@ const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
     return cleanup
   }, [])
 
+  React.useEffect(() => {
+    if (timeLeft === 0) {
+      doneShowingRole()
+    }
+  }, [timeLeft])
+
   return (
     <>
       <h1>
@@ -43,6 +54,7 @@ const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
         <h2>You are not the impostor. The secret word is: {game.secretWord}</h2>
       )}
       <p>Time left: {timeLeft}</p>
+      {/* <TimeLeftBar totalTime={totalTime} timeLeft={timeLeft} interval={interval} /> */}
     </>
   )
 }

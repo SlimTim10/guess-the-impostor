@@ -57,6 +57,10 @@ const App = () => {
     setView('showing-role')
   }
 
+  const doneShowingRole = (): void => {
+    setView('done-showing-role')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -74,7 +78,11 @@ const App = () => {
         startShowingRole={startShowingRole}
       />
     ) : view === 'showing-role' && game !== null ? (
-      <ShowingRole game={game} playerTurn={playerTurn} />
+      <ShowingRole
+        game={game}
+        playerTurn={playerTurn}
+        doneShowingRole={doneShowingRole}
+      />
     ) : view === 'done-showing-role' && game !== null ? (
       <DoneShowingRole
         game={game}
