@@ -11,14 +11,33 @@ const SECONDS_TO_SHOW_ROLE: number = 5
 
 const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
   const role: PlayerRole = game.players[playerTurn - 1]
-  const [timeLeft, _setTimeLeft] = React.useState<number>(SECONDS_TO_SHOW_ROLE)
+  const [timeLeft, setTimeLeft] = React.useState<number>(SECONDS_TO_SHOW_ROLE)
+
+  React.useEffect(() => {
+    const countdownId: number = setInterval(() => {
+      setTimeLeft((x) => {
+        if (x - 1 >= 0) {
+          return x - 1
+        } else {
+          clearInterval(countdownId)
+          return x
+        }
+      })
+    }, 1000)
+
+    const cleanup = (): void => {
+      clearInterval(countdownId)
+    }
+
+    return cleanup
+  }, [])
 
   return (
     <>
       <h1>
         Player {playerTurn} of {game.players.length}
       </h1>
-      <h1>Don&quot;t let anyone else see the screen!</h1>
+      <h1>Don&#39;t let anyone else see the screen!</h1>
       {role === 'impostor' && <h2>You are the impostor!</h2>}
       {role === 'keeper' && (
         <h2>You are not the impostor. The secret word is: {game.secretWord}</h2>
