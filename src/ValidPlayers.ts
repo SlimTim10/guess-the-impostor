@@ -8,17 +8,16 @@ import { isImpostor, isKeeper } from './PlayerRoles'
 export const MIN_PLAYERS = 3
 
 export type NumberOfPlayers = number & { readonly __type: unique symbol }
-export const isNumberOfPlayers = (n: number): n is NumberOfPlayers => (
+export const isNumberOfPlayers = (n: number): n is NumberOfPlayers =>
   n >= MIN_PLAYERS
-)
 
-export type ValidPlayers =
-  Array<PlayerRole> & { readonly __type: unique symbol }
-export const isValidPlayers = (p: Array<PlayerRole>): p is ValidPlayers => (
+export type ValidPlayers = Array<PlayerRole> & {
+  readonly __type: unique symbol
+}
+export const isValidPlayers = (p: Array<PlayerRole>): p is ValidPlayers =>
   isNumberOfPlayers(p.length) &&
-    A.filter(isImpostor)(p).length === 1 &&
-    A.filter(isKeeper)(p).length === p.length - 1
-)
+  A.filter(isImpostor)(p).length === 1 &&
+  A.filter(isKeeper)(p).length === p.length - 1
 
 export const createPlayers = (n: NumberOfPlayers): ValidPlayers => {
   const keepers: Array<PlayerRole> = A.replicate(n, 'keeper')
@@ -35,8 +34,8 @@ export const createPlayers = (n: NumberOfPlayers): ValidPlayers => {
         } else {
           throw 'Error: createPlayers invalid'
         }
-      }
-    )
+      },
+    ),
   )
 }
 

@@ -2,11 +2,16 @@ import React from 'react'
 import type { Game } from '../Game'
 
 type Props = {
-  game: Game;
-  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  game: Game
+  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
+  openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const AskWasMajorityVoteImpostor = ({ game, openHowToPlay }: Props): React.ReactElement => {
+const AskWasMajorityVoteImpostor = ({
+  game,
+  openHowToPlay,
+  openConfirmRestart,
+}: Props): React.ReactElement => {
   console.log(game) // dummy usage
   return (
     <>
@@ -14,6 +19,9 @@ const AskWasMajorityVoteImpostor = ({ game, openHowToPlay }: Props): React.React
       <p>Impostor, you can now reveal yourself!</p>
       <div>
         <button onClick={openHowToPlay}>How to play</button>
+      </div>
+      <div>
+        <button onClick={openConfirmRestart}>Restart</button>
       </div>
     </>
   )

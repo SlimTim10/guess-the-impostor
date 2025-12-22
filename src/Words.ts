@@ -8,7 +8,8 @@ export const wordlist: RNEA.ReadonlyNonEmptyArray<SecretWord> = [
   'banana',
 ] as unknown as RNEA.ReadonlyNonEmptyArray<SecretWord>
 
-export const generateRandomSecretWord = (): SecretWord => R.randomElem(wordlist)()
+export const generateRandomSecretWord = (): SecretWord =>
+  R.randomElem(wordlist)()
 
 export const generateNewSecretWord = (w: SecretWord): SecretWord => {
   const newWord = generateRandomSecretWord()

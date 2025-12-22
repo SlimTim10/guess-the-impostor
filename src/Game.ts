@@ -4,8 +4,8 @@ import type { SecretWord } from './Words'
 import { generateRandomSecretWord, generateNewSecretWord } from './Words'
 
 export type Game = {
-  players: ValidPlayers;
-  secretWord: SecretWord;
+  players: ValidPlayers
+  secretWord: SecretWord
 }
 
 export const startGame = (x: NumberOfPlayers): Game => ({

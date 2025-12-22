@@ -2,8 +2,8 @@ import React from 'react'
 import type { Game } from '../Game'
 
 type Props = {
-  game: Game;
-  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  game: Game
+  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const KeepersWin = ({ game, openHowToPlay }: Props): React.ReactElement => {

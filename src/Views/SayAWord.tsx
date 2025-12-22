@@ -3,12 +3,18 @@ import type { Game } from '../Game'
 import type { Round } from '../Rounds'
 
 type Props = {
-  game: Game;
-  round: Round;
-  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  game: Game
+  round: Round
+  openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
+  openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const SayAWord = ({ game, round, openHowToPlay }: Props): React.ReactElement => {
+const SayAWord = ({
+  game,
+  round,
+  openHowToPlay,
+  openConfirmRestart,
+}: Props): React.ReactElement => {
   console.log(game) // dummy usage
   console.log(round) // dummy usage
   return (
@@ -16,6 +22,9 @@ const SayAWord = ({ game, round, openHowToPlay }: Props): React.ReactElement => 
       <h1>Say a word</h1>
       <div>
         <button onClick={openHowToPlay}>How to play</button>
+      </div>
+      <div>
+        <button onClick={openConfirmRestart}>Restart</button>
       </div>
     </>
   )

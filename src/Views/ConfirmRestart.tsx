@@ -1,8 +1,12 @@
 import React from 'react'
 
-const ConfirmRestart = () => {
+type Props = {
+  ref: React.RefObject<HTMLDialogElement | null>
+}
+
+const ConfirmRestart = ({ ref }: Props) => {
   const handleNo = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    console.log('handleNo')
+    ref.current?.close()
   }
 
   const handleYes = (_e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -10,15 +14,11 @@ const ConfirmRestart = () => {
   }
 
   return (
-    <>
+    <dialog closedby="any" ref={ref}>
       <h1>Are you sure you want to restart?</h1>
-      <button onClick={handleNo}>
-        No
-      </button>
-      <button onClick={handleYes}>
-        Yes
-      </button>
-    </>
+      <button onClick={handleNo}>No</button>
+      <button onClick={handleYes}>Yes</button>
+    </dialog>
   )
 }
 
