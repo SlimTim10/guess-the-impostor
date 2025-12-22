@@ -47,7 +47,7 @@ const App = () => {
     setView('initial')
   }
 
-  const play = (numPlayers: NumberOfPlayers): void => {
+  const play = (): void => {
     setView('show-role')
     setPlayerTurn(1)
     setGame(startGame(numPlayers))

@@ -3,10 +3,10 @@ import type { NumberOfPlayers } from '../ValidPlayers'
 import { MIN_PLAYERS, isNumberOfPlayers } from '../ValidPlayers'
 
 type Props = {
-  play: (x: NumberOfPlayers) => void
+  play: () => void
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   numPlayers: NumberOfPlayers
-  setNumPlayers: (x: NumberOfPlayers) => void
+  setNumPlayers: React.Dispatch<React.SetStateAction<NumberOfPlayers>>
 }
 
 const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
@@ -20,7 +20,7 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
   }
 
   const handlePlayButton = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    play(numPlayers)
+    play()
   }
 
   return (
