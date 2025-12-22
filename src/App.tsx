@@ -4,6 +4,7 @@ import type { Game } from './Game'
 import { startGame } from './Game'
 import type { Round } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
+import { MIN_PLAYERS } from './ValidPlayers'
 import type { View } from './Views'
 import AskWasMajorityVoteImpostor from './Views/AskWasMajorityVoteImpostor'
 import ConfirmRestart from './Views/ConfirmRestart'
@@ -23,6 +24,10 @@ const App = () => {
   const [view, setView] = React.useState<View>('initial')
   const [playerTurn, setPlayerTurn] = React.useState<number>(1)
   const [game, setGame] = React.useState<Game | null>(null)
+  const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
+    MIN_PLAYERS as NumberOfPlayers,
+  )
+
   const howToPlayRef = React.useRef<HTMLDialogElement>(null)
   const confirmRestartRef = React.useRef<HTMLDialogElement>(null)
 
@@ -38,6 +43,10 @@ const App = () => {
     confirmRestartRef.current?.showModal()
   }
 
+  const restart = (): void => {
+    setView('initial')
+  }
+
   const play = (numPlayers: NumberOfPlayers): void => {
     setView('show-role')
     setPlayerTurn(1)
@@ -46,7 +55,12 @@ const App = () => {
 
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
-      <Initial play={play} openHowToPlay={openHowToPlay} />
+      <Initial
+        play={play}
+        openHowToPlay={openHowToPlay}
+        numPlayers={numPlayers}
+        setNumPlayers={setNumPlayers}
+      />
     ) : view === 'show-role' && game !== null ? (
       <ShowRole
         game={game}
@@ -120,7 +134,9 @@ const App = () => {
         'voting',
         'ask-was-majority-vote-impostor',
         'impostor-guessing',
-      ].includes(view) && <ConfirmRestart ref={confirmRestartRef} />}
+      ].includes(view) && (
+        <ConfirmRestart ref={confirmRestartRef} restart={restart} />
+      )}
     </>
   )
 }

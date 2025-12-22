@@ -2,15 +2,16 @@ import React from 'react'
 
 type Props = {
   ref: React.RefObject<HTMLDialogElement | null>
+  restart: () => void
 }
 
-const ConfirmRestart = ({ ref }: Props) => {
+const ConfirmRestart = ({ ref, restart }: Props) => {
   const handleNo = (_e: React.MouseEvent<HTMLButtonElement>): void => {
     ref.current?.close()
   }
 
   const handleYes = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    console.log('handleYes')
+    restart()
   }
 
   return (

@@ -5,13 +5,12 @@ import { MIN_PLAYERS, isNumberOfPlayers } from '../ValidPlayers'
 type Props = {
   play: (x: NumberOfPlayers) => void
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
+  numPlayers: NumberOfPlayers
+  setNumPlayers: (x: NumberOfPlayers) => void
 }
 
-const Initial = ({ play, openHowToPlay }: Props) => {
+const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
   const playersInputId = React.useId()
-  const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
-    MIN_PLAYERS as NumberOfPlayers,
-  )
 
   const handlePlayersChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const n: number = Number(e.currentTarget.value)
