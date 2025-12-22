@@ -5,7 +5,7 @@ import * as R from 'fp-ts/Random'
 import type { PlayerRole } from './PlayerRoles'
 import { isImpostor, isKeeper } from './PlayerRoles'
 
-export const MIN_PLAYERS = 3
+export const MIN_PLAYERS: number = 3
 
 export type NumberOfPlayers = number & { readonly __type: unique symbol }
 export const isNumberOfPlayers = (n: number): n is NumberOfPlayers =>
