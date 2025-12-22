@@ -61,6 +61,11 @@ const App = () => {
     setView('done-showing-role')
   }
 
+  const passToNextPlayer = (): void => {
+    setView('pass-to-next-player')
+    setPlayerTurn((x) => x + 1)
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -90,6 +95,7 @@ const App = () => {
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
         startShowingRole={startShowingRole}
+        passToNextPlayer={passToNextPlayer}
       />
     ) : view === 'pass-to-next-player' && game !== null ? (
       <PassToNextPlayer game={game} playerTurn={playerTurn} />
