@@ -18,7 +18,7 @@ const ShowingRole = ({ game, playerTurn }: Props): React.ReactElement => {
       <h1>
         Player {playerTurn} of {game.players.length}
       </h1>
-      <h1>Don't let anyone else see the screen!</h1>
+      <h1>Don&quot;t let anyone else see the screen!</h1>
       {role === 'impostor' && <h2>You are the impostor!</h2>}
       {role === 'keeper' && (
         <h2>You are not the impostor. The secret word is: {game.secretWord}</h2>
