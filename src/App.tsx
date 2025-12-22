@@ -27,11 +27,10 @@ const App = () => {
   const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
     MIN_PLAYERS as NumberOfPlayers,
   )
+  const [round, _setRound] = React.useState<Round>(1 as Round)
 
   const howToPlayRef = React.useRef<HTMLDialogElement>(null)
   const confirmRestartRef = React.useRef<HTMLDialogElement>(null)
-
-  const round: Round = 1 as Round
 
   const openHowToPlay = (_e: React.MouseEvent<HTMLButtonElement>): void => {
     howToPlayRef.current?.showModal()
@@ -66,6 +65,10 @@ const App = () => {
     setPlayerTurn((x) => x + 1)
   }
 
+  const lastPlayerSawRole = (): void => {
+    setView('say-a-word')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -96,6 +99,7 @@ const App = () => {
         openConfirmRestart={openConfirmRestart}
         startShowingRole={startShowingRole}
         passToNextPlayer={passToNextPlayer}
+        lastPlayerSawRole={lastPlayerSawRole}
       />
     ) : view === 'pass-to-next-player' && game !== null ? (
       <PassToNextPlayer game={game} playerTurn={playerTurn} />

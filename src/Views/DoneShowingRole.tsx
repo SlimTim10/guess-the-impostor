@@ -8,6 +8,7 @@ type Props = {
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
   startShowingRole: () => void
   passToNextPlayer: () => void
+  lastPlayerSawRole: () => void
 }
 
 const DoneShowingRole = ({
@@ -17,10 +18,11 @@ const DoneShowingRole = ({
   openConfirmRestart,
   startShowingRole,
   passToNextPlayer,
+  lastPlayerSawRole,
 }: Props): React.ReactElement => {
   const handleISawIt = (_e: React.MouseEvent<HTMLButtonElement>): void => {
     if (playerTurn === game.players.length) {
-      console.log('last player saw role')
+      lastPlayerSawRole()
     } else {
       passToNextPlayer()
     }
