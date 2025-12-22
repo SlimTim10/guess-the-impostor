@@ -53,6 +53,10 @@ const App = () => {
     setGame(startGame(numPlayers))
   }
 
+  const startShowingRole = (): void => {
+    setView('showing-role')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -67,6 +71,7 @@ const App = () => {
         playerTurn={playerTurn}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        startShowingRole={startShowingRole}
       />
     ) : view === 'showing-role' && game !== null ? (
       <ShowingRole game={game} playerTurn={playerTurn} />
