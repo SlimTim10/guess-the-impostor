@@ -89,6 +89,7 @@ const App = () => {
         playerTurn={playerTurn}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        startShowingRole={startShowingRole}
       />
     ) : view === 'pass-to-next-player' && game !== null ? (
       <PassToNextPlayer game={game} playerTurn={playerTurn} />

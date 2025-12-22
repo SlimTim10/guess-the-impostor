@@ -6,6 +6,7 @@ type Props = {
   playerTurn: number
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
+  startShowingRole: () => void
 }
 
 const DoneShowingRole = ({
@@ -13,6 +14,7 @@ const DoneShowingRole = ({
   playerTurn,
   openHowToPlay,
   openConfirmRestart,
+  startShowingRole,
 }: Props): React.ReactElement => {
   const handleISawIt = (_e: React.MouseEvent<HTMLButtonElement>): void => {
     console.log('I saw it')
@@ -21,7 +23,7 @@ const DoneShowingRole = ({
   const handleShowRoleAgain = (
     _e: React.MouseEvent<HTMLButtonElement>,
   ): void => {
-    console.log('Show role again')
+    startShowingRole()
   }
 
   return (
