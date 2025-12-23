@@ -118,6 +118,7 @@ const App = () => {
     setGame((g) => {
       if (g !== null) {
         setView('show-role')
+        setPlayerTurn(1)
         return playAgain(g)
       } else {
         throw 'Error: bad game in playAgainTrigger'
