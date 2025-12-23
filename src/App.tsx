@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import type { Game } from './Game'
-import { startGame } from './Game'
+import { startGame, playAgain } from './Game'
 import type { Round } from './Rounds'
 import { isRound } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
@@ -89,7 +89,7 @@ const App = () => {
         setView('say-a-word')
         return nextRound
       } else {
-        return x
+        throw 'Error: bad round in noMajorityVote'
       }
     })
   }
@@ -112,6 +112,17 @@ const App = () => {
 
   const impostorGuessedWrong = (): void => {
     setView('keepers-win')
+  }
+
+  const playAgainTrigger = (): void => {
+    setGame((g) => {
+      if (g !== null) {
+        setView('show-role')
+        return playAgain(g)
+      } else {
+        throw 'Error: bad game in playAgainTrigger'
+      }
+    })
   }
 
   const viewComponent: React.ReactElement =
@@ -178,9 +189,17 @@ const App = () => {
         impostorGuessedWrong={impostorGuessedWrong}
       />
     ) : view === 'impostor-wins' && game !== null ? (
-      <ImpostorWins game={game} openHowToPlay={openHowToPlay} />
+      <ImpostorWins
+        game={game}
+        openHowToPlay={openHowToPlay}
+        playAgain={playAgainTrigger}
+      />
     ) : view === 'keepers-win' && game !== null ? (
-      <KeepersWin game={game} openHowToPlay={openHowToPlay} />
+      <KeepersWin
+        game={game}
+        openHowToPlay={openHowToPlay}
+        playAgain={playAgainTrigger}
+      />
     ) : (
       <></>
     )
