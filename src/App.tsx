@@ -3,6 +3,7 @@ import './App.css'
 import type { Game } from './Game'
 import { startGame } from './Game'
 import type { Round } from './Rounds'
+import { isRound } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
 import { MIN_PLAYERS } from './ValidPlayers'
 import type { View } from './Views'
@@ -27,7 +28,7 @@ const App = () => {
   const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
     MIN_PLAYERS as NumberOfPlayers,
   )
-  const [round, _setRound] = React.useState<Round>(1 as Round)
+  const [round, setRound] = React.useState<Round>(1 as Round)
 
   const howToPlayRef = React.useRef<HTMLDialogElement>(null)
   const confirmRestartRef = React.useRef<HTMLDialogElement>(null)
@@ -79,6 +80,18 @@ const App = () => {
 
   const impostorSaidSecretWord = (): void => {
     setView('impostor-wins')
+  }
+
+  const noMajorityVote = (): void => {
+    setRound((x) => {
+      const nextRound: number = x + 1
+      if (isRound(nextRound)) {
+        setView('say-a-word')
+        return nextRound
+      } else {
+        return x
+      }
+    })
   }
 
   const viewComponent: React.ReactElement =
@@ -134,6 +147,7 @@ const App = () => {
         round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        noMajorityVote={noMajorityVote}
       />
     ) : view === 'ask-was-majority-vote-impostor' && game !== null ? (
       <AskWasMajorityVoteImpostor

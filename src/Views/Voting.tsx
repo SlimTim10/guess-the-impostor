@@ -8,6 +8,7 @@ type Props = {
   round: Round
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
+  noMajorityVote: () => void
 }
 
 const Voting = ({
@@ -15,6 +16,7 @@ const Voting = ({
   round,
   openHowToPlay,
   openConfirmRestart,
+  noMajorityVote,
 }: Props): React.ReactElement => {
   console.log(game) // dummy usage
   return (
@@ -23,6 +25,14 @@ const Voting = ({
         <>
           <h1>Cast your votes on who you think is the impostor</h1>
           <h1>Is there a majority vote?</h1>
+          <div>
+            <button onClick={noMajorityVote}>No</button>
+          </div>
+          <div>
+            <button onClick={() => console.log('yes majority vote')}>
+              Yes
+            </button>
+          </div>
         </>
       )}
       {round === ROUND_LIMIT && (
