@@ -106,6 +106,14 @@ const App = () => {
     setView('impostor-guessing')
   }
 
+  const impostorGuessedRight = (): void => {
+    setView('impostor-wins')
+  }
+
+  const impostorGuessedWrong = (): void => {
+    setView('keepers-win')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -166,6 +174,8 @@ const App = () => {
       <ImpostorGuessing
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        impostorGuessedRight={impostorGuessedRight}
+        impostorGuessedWrong={impostorGuessedWrong}
       />
     ) : view === 'impostor-wins' && game !== null ? (
       <ImpostorWins game={game} openHowToPlay={openHowToPlay} />
