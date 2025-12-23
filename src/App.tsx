@@ -94,6 +94,10 @@ const App = () => {
     })
   }
 
+  const yesMajorityVote = (): void => {
+    setView('ask-was-majority-vote-impostor')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -148,6 +152,7 @@ const App = () => {
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
         noMajorityVote={noMajorityVote}
+        yesMajorityVote={yesMajorityVote}
       />
     ) : view === 'ask-was-majority-vote-impostor' && game !== null ? (
       <AskWasMajorityVoteImpostor

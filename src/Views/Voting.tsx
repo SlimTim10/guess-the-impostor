@@ -9,6 +9,7 @@ type Props = {
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
   noMajorityVote: () => void
+  yesMajorityVote: () => void
 }
 
 const Voting = ({
@@ -17,6 +18,7 @@ const Voting = ({
   openHowToPlay,
   openConfirmRestart,
   noMajorityVote,
+  yesMajorityVote,
 }: Props): React.ReactElement => {
   console.log(game) // dummy usage
   return (
@@ -32,9 +34,7 @@ const Voting = ({
             <button onClick={noMajorityVote}>No</button>
           </div>
           <div>
-            <button onClick={() => console.log('yes majority vote')}>
-              Yes
-            </button>
+            <button onClick={yesMajorityVote}>Yes</button>
           </div>
         </>
       )}
