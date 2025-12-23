@@ -69,6 +69,10 @@ const App = () => {
     setView('say-a-word')
   }
 
+  const passToNextPlayerDone = (): void => {
+    setView('show-role')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -102,7 +106,11 @@ const App = () => {
         lastPlayerSawRole={lastPlayerSawRole}
       />
     ) : view === 'pass-to-next-player' && game !== null ? (
-      <PassToNextPlayer game={game} playerTurn={playerTurn} />
+      <PassToNextPlayer
+        game={game}
+        playerTurn={playerTurn}
+        passToNextPlayerDone={passToNextPlayerDone}
+      />
     ) : view === 'say-a-word' && game !== null ? (
       <SayAWord
         game={game}
