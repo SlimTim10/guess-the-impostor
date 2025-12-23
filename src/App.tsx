@@ -73,6 +73,10 @@ const App = () => {
     setView('show-role')
   }
 
+  const doneSayingWords = (): void => {
+    setView('voting')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -117,6 +121,7 @@ const App = () => {
         round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        doneSayingWords={doneSayingWords}
       />
     ) : view === 'voting' && game !== null ? (
       <Voting
