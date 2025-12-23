@@ -21,6 +21,9 @@ const Voting = ({
   console.log(game) // dummy usage
   return (
     <>
+      <h1>
+        Round {round} of {ROUND_LIMIT}
+      </h1>
       {round < ROUND_LIMIT && (
         <>
           <h1>Cast your votes on who you think is the impostor</h1>
