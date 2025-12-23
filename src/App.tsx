@@ -139,15 +139,9 @@ const App = () => {
         lastPlayerSawRole={lastPlayerSawRole}
       />
     ) : view === 'pass-to-next-player' && game !== null ? (
-      <PassToNextPlayer
-        game={game}
-        playerTurn={playerTurn}
-        passToNextPlayerDone={passToNextPlayerDone}
-      />
+      <PassToNextPlayer passToNextPlayerDone={passToNextPlayerDone} />
     ) : view === 'say-a-word' && game !== null ? (
       <SayAWord
-        game={game}
-        round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
         doneSayingWords={doneSayingWords}
@@ -155,7 +149,6 @@ const App = () => {
       />
     ) : view === 'voting' && game !== null ? (
       <Voting
-        game={game}
         round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
@@ -171,7 +164,6 @@ const App = () => {
       />
     ) : view === 'impostor-guessing' && game !== null ? (
       <ImpostorGuessing
-        game={game}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
       />

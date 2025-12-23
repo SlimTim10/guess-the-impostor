@@ -1,10 +1,8 @@
 import React from 'react'
-import type { Game } from '../Game'
 import type { Round } from '../Rounds'
 import { ROUND_LIMIT } from '../Rounds'
 
 type Props = {
-  game: Game
   round: Round
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -13,14 +11,12 @@ type Props = {
 }
 
 const Voting = ({
-  game,
   round,
   openHowToPlay,
   openConfirmRestart,
   noMajorityVote,
   yesMajorityVote,
 }: Props): React.ReactElement => {
-  console.log(game) // dummy usage
   return (
     <>
       <h1>
