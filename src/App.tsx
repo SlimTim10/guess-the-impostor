@@ -98,6 +98,14 @@ const App = () => {
     setView('ask-was-majority-vote-impostor')
   }
 
+  const majorityVoteWasNotImposter = (): void => {
+    setView('impostor-wins')
+  }
+
+  const majorityVoteWasImposter = (): void => {
+    setView('impostor-guessing')
+  }
+
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
       <Initial
@@ -156,9 +164,10 @@ const App = () => {
       />
     ) : view === 'ask-was-majority-vote-impostor' && game !== null ? (
       <AskWasMajorityVoteImpostor
-        game={game}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
+        majorityVoteWasNotImposter={majorityVoteWasNotImposter}
+        majorityVoteWasImposter={majorityVoteWasImposter}
       />
     ) : view === 'impostor-guessing' && game !== null ? (
       <ImpostorGuessing
