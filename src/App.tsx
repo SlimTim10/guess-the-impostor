@@ -1,12 +1,16 @@
 import React from 'react'
+import * as R from 'fp-ts/Refinement'
+import { isNumber } from 'fp-ts/number'
 import './App.css'
 import type { Game } from './Game'
 import { startGame, playAgain } from './Game'
 import type { Round } from './Rounds'
 import { isRound } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
+import { isNumberOfPlayers } from './ValidPlayers'
 import { MIN_PLAYERS } from './ValidPlayers'
 import type { View } from './Views'
+import { isView } from './Views'
 import AskWasMajorityVoteImpostor from './Views/AskWasMajorityVoteImpostor'
 import ConfirmRestart from './Views/ConfirmRestart'
 import DoneShowingRole from './Views/DoneShowingRole'
@@ -21,8 +25,52 @@ import ShowRole from './Views/ShowRole'
 import ShowingRole from './Views/ShowingRole'
 import Voting from './Views/Voting'
 
+const getItem = <T extends string>(
+  key: string,
+  refinement: R.Refinement<string, T>,
+): T | null => {
+  const item = localStorage.getItem(key)
+  if (item !== null && refinement(item)) {
+    return item
+  }
+  return null
+}
+
+const setItem = <T,>(key: string, value: T): void => {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+const getNumberOfPlayers = (
+  key: string,
+  refinement: R.Refinement<number, NumberOfPlayers>,
+): NumberOfPlayers | null => {
+  const item: string | null = localStorage.getItem(key)
+  if (item !== null && isNumber(item) && refinement(Number(item))) {
+    return item
+  }
+  return null
+}
+
+const getItem2 = <A, B extends A>(
+  key: string,
+  r: R.Refinement<A, B>,
+): B | null => {
+  const item = localStorage.getItem(key)
+  if (item !== null) {
+    try {
+      const x: A = JSON.parse(item)
+      if (r(x)) {
+        return x
+      }
+    } catch (_) {}
+  }
+  return null
+}
+
 const App = () => {
-  const [view, setView] = React.useState<View>('initial')
+  const [view, setView] = React.useState<View>(
+    getItem<View>('view', isView) || 'initial',
+  )
   const [playerTurn, setPlayerTurn] = React.useState<number>(1)
   const [game, setGame] = React.useState<Game | null>(null)
   const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
@@ -125,6 +173,48 @@ const App = () => {
       }
     })
   }
+
+  // Fetch/store state on load to disable refresh
+  React.useEffect(() => {
+    const v: View | null = getItem<View>('view', isView)
+    if (v === null) {
+      setItem<View>('view', view)
+    } else {
+      setView(v)
+    }
+    // numPlayers
+    // ...
+  }, [])
+
+  React.useEffect(() => {
+    const x: NumberOfPlayers | null = getNumberOfPlayers(
+      'numPlayers',
+      isNumberOfPlayers,
+    )
+    if (x === null) {
+      setItem<NumberOfPlayers>('numPlayers', numPlayers)
+    } else {
+      setNumPlayers(x)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    const x: NumberOfPlayers | null = getItem2<number, NumberOfPlayers>(
+      'numPlayers',
+      isNumberOfPlayers,
+    )
+    if (x === null) {
+      setItem<NumberOfPlayers>('numPlayers', numPlayers)
+    } else {
+      setNumPlayers(x)
+    }
+  }, [])
+
+  // Store state on change to disable refresh
+  React.useEffect(() => {
+    setItem<View>('view', view)
+  }, [view])
+  React.useEffect(() => {}, [playerTurn]) // TODO: repeat for each state
 
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
