@@ -3,7 +3,7 @@ import './App.css'
 import * as Refinement from 'fp-ts/Refinement'
 import { useStorageState } from './useStorageState'
 import type { Game } from './Game'
-import { startGame, playAgain } from './Game'
+import { isGameOrNull, playAgain, startGame } from './Game'
 import type { Round } from './Rounds'
 import { isRound } from './Rounds'
 import type { NumberOfPlayers } from './ValidPlayers'
@@ -36,7 +36,11 @@ const App = () => {
     1,
     Refinement.id<number>(),
   )
-  const [game, setGame] = React.useState<Game | null>(null) // TODO
+  const [game, setGame] = useStorageState<object | null, Game | null>(
+    'game',
+    null,
+    isGameOrNull,
+  )
   const [numPlayers, setNumPlayers] = useStorageState<number, NumberOfPlayers>(
     'numPlayers',
     MIN_PLAYERS as NumberOfPlayers,
@@ -144,7 +148,7 @@ const App = () => {
     })
   }
 
-  const viewComponent: React.ReactElement =
+  const viewComponent: React.ReactElement | null =
     view === 'initial' ? (
       <Initial
         play={play}
@@ -219,9 +223,12 @@ const App = () => {
         openHowToPlay={openHowToPlay}
         playAgain={playAgainTrigger}
       />
-    ) : (
-      <></>
-    )
+    ) : null
+
+  // Something went wrong. Restart.
+  if (viewComponent === null) {
+    restart()
+  }
 
   return (
     <>
