@@ -1,6 +1,7 @@
 import React from 'react'
-import * as R from 'fp-ts/Refinement'
 import './App.css'
+import * as Refinement from 'fp-ts/Refinement'
+import { useStorageState } from './useStorageState'
 import type { Game } from './Game'
 import { startGame, playAgain } from './Game'
 import type { Round } from './Rounds'
@@ -24,37 +25,28 @@ import ShowRole from './Views/ShowRole'
 import ShowingRole from './Views/ShowingRole'
 import Voting from './Views/Voting'
 
-const setItem = <T,>(key: string, value: T): void => {
-  localStorage.setItem(key, JSON.stringify(value))
-}
-
-const getItem = <A, B extends A>(
-  key: string,
-  r: R.Refinement<A, B>,
-): B | null => {
-  const item = localStorage.getItem(key)
-  if (item !== null) {
-    try {
-      const x: A = JSON.parse(item)
-      if (r(x)) {
-        return x
-      }
-    } catch (_) {}
-  }
-  return null
-}
-
 const App = () => {
-  const [view, setView] = React.useState<View>(
-    getItem<string, View>('view', isView) || 'initial',
+  const [view, setView] = useStorageState<string, View>(
+    'view',
+    'initial',
+    isView,
   )
-  const [playerTurn, setPlayerTurn] = React.useState<number>(1)
-  const [game, setGame] = React.useState<Game | null>(null)
-  const [numPlayers, setNumPlayers] = React.useState<NumberOfPlayers>(
-    getItem<number, NumberOfPlayers>('numPlayers', isNumberOfPlayers) ||
-      (MIN_PLAYERS as NumberOfPlayers),
+  const [playerTurn, setPlayerTurn] = useStorageState<number, number>(
+    'playerTurn',
+    1,
+    Refinement.id<number>(),
   )
-  const [round, setRound] = React.useState<Round>(1 as Round)
+  const [game, setGame] = React.useState<Game | null>(null) // TODO
+  const [numPlayers, setNumPlayers] = useStorageState<number, NumberOfPlayers>(
+    'numPlayers',
+    MIN_PLAYERS as NumberOfPlayers,
+    isNumberOfPlayers,
+  )
+  const [round, setRound] = useStorageState<number, Round>(
+    'round',
+    1 as Round,
+    isRound,
+  )
 
   const howToPlayRef = React.useRef<HTMLDialogElement>(null)
   const confirmRestartRef = React.useRef<HTMLDialogElement>(null)
@@ -151,36 +143,6 @@ const App = () => {
       }
     })
   }
-
-  // Disable refresh
-  // On load, fetch state from storage
-  React.useEffect(() => {
-    const x: View | null = getItem<string, View>('view', isView)
-    if (x !== null) {
-      setView(x)
-    }
-  }, [])
-
-  // TODO: make a function to reduce repetition
-  React.useEffect(() => {
-    const x: NumberOfPlayers | null = getItem<number, NumberOfPlayers>(
-      'numPlayers',
-      isNumberOfPlayers,
-    )
-    if (x !== null) {
-      setNumPlayers(x)
-    }
-  }, [])
-
-  // Store state on change
-  // TODO: repeat for each state
-  React.useEffect(() => {
-    setItem<View>('view', view)
-  }, [view])
-
-  React.useEffect(() => {
-    setItem<NumberOfPlayers>('numPlayers', numPlayers)
-  }, [numPlayers])
 
   const viewComponent: React.ReactElement =
     view === 'initial' ? (
