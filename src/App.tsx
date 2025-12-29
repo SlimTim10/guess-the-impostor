@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import * as Refinement from 'fp-ts/Refinement'
 import { useStorageState } from './useStorageState'
 import type { Game } from './Game'
@@ -231,7 +230,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <main className="max-w-7xl h-screen m-0 flex flex-col place-items-center place-content-center gap-y-4">
       {viewComponent}
       {[
         'initial',
@@ -254,7 +253,7 @@ const App = () => {
       ].includes(view) && (
         <ConfirmRestart ref={confirmRestartRef} restart={restart} />
       )}
-    </>
+    </main>
   )
 }
 

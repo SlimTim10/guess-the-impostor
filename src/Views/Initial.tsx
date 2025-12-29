@@ -25,27 +25,27 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
 
   return (
     <>
-      <h1>Guess the Impostor</h1>
-      <p>
-        <label htmlFor="players">How many players?</label>
-      </p>
-      <p>
-        <input
-          id={playersInputId}
-          name="players"
-          type="number"
-          value={numPlayers}
-          onChange={handlePlayersChange}
-          min={MIN_PLAYERS}
-          max="99"
-        />
-      </p>
-      <div>
-        <button onClick={handlePlayButton}>Play</button>
-      </div>
-      <div>
-        <button onClick={openHowToPlay}>How to play</button>
-      </div>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
+        Guess The Impostor
+      </h1>
+      <label htmlFor="players" className="text-lg">
+        How many players?
+      </label>
+      <input
+        id={playersInputId}
+        name="players"
+        type="number"
+        value={numPlayers}
+        onChange={handlePlayersChange}
+        min={MIN_PLAYERS}
+        max="99"
+      />
+      <button onClick={handlePlayButton} className="btn btn-primary">
+        Play
+      </button>
+      <button onClick={openHowToPlay} className="btn btn-secondary">
+        How to play
+      </button>
     </>
   )
 }
