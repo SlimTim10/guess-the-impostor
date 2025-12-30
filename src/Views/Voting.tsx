@@ -19,33 +19,57 @@ const Voting = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h1>
+      <h2 className="text-lg text-primary">
         Round {round} of {ROUND_LIMIT}
-      </h1>
+      </h2>
       {round < ROUND_LIMIT && (
         <>
-          <h1>Cast your votes on who you think is the impostor</h1>
-          <h1>Is there a majority vote?</h1>
-          <div>
-            <button onClick={noMajorityVote}>No</button>
-          </div>
-          <div>
-            <button onClick={yesMajorityVote}>Yes</button>
+          <p className="text-lg">
+            Talk amongst yourselves and cast your votes on who you think is the
+            impostor!
+          </p>
+          <p className="text-sm">(Any player may abstain from voting)</p>
+          <p className="text-lg">Is there a majority vote?</p>
+          <div className="flex gap-x-2">
+            <button onClick={noMajorityVote} className="btn btn-error">
+              No
+            </button>
+            <button onClick={yesMajorityVote} className="btn btn-success">
+              Yes
+            </button>
           </div>
         </>
       )}
       {round === ROUND_LIMIT && (
         <>
-          <h1>Cast your votes on who you think is the impostor</h1>
-          <h1>This is your last chance!</h1>
+          <p className="text-lg">
+            Talk amongst yourselves and cast your votes on who you think is the
+            impostor!
+          </p>
+          <p className="text-sm">(This is your last chance!)</p>
+          <p className="text-lg">Is there a majority vote?</p>
+          <div className="flex gap-x-2">
+            <button className="btn" disabled="disabled">
+              No
+            </button>
+            <button onClick={yesMajorityVote} className="btn btn-success">
+              Yes
+            </button>
+          </div>
         </>
       )}
-      <div>
-        <button onClick={openHowToPlay}>How to play</button>
-      </div>
-      <div>
-        <button onClick={openConfirmRestart}>Restart</button>
-      </div>
+      <button
+        onClick={openHowToPlay}
+        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
+      >
+        How to play
+      </button>
+      <button
+        onClick={openConfirmRestart}
+        className="btn btn-secondary btn-xs absolute top-0 left-0 m-2"
+      >
+        Restart
+      </button>
     </>
   )
 }
