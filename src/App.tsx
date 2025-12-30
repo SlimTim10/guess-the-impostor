@@ -230,7 +230,7 @@ const App = () => {
   }
 
   return (
-    <main className="max-w-7xl h-screen m-0 flex flex-col place-items-center place-content-center gap-y-4">
+    <main className="max-w-7xl h-screen m-0 flex flex-col place-items-center place-content-center gap-y-4 p-2">
       {viewComponent}
       {[
         'initial',
