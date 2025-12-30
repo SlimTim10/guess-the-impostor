@@ -40,8 +40,8 @@ const PassToNextPlayer = ({
 
   return (
     <>
-      <h1>Pass to the next player</h1>
-      <p>Time left: {timeLeft}</p>
+      <h2 className="text-lg text-primary">Pass to the next player</h2>
+      <p className="absolute bottom-0">Time left: {timeLeft}</p>
     </>
   )
 }
