@@ -88,7 +88,11 @@ const App = () => {
   }
 
   const lastPlayerSawRole = (): void => {
-    setView('say-a-word')
+    const r: number = 1
+    if (isRound(r)) {
+      setView('say-a-word')
+      setRound(r)
+    }
   }
 
   const passToNextPlayerDone = (): void => {
