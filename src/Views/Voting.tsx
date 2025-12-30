@@ -49,7 +49,7 @@ const Voting = ({
           <p className="text-sm">(This is your last chance!)</p>
           <p className="text-lg">Is there a majority vote?</p>
           <div className="flex gap-x-2">
-            <button className="btn" disabled="disabled">
+            <button className="btn" disabled={true}>
               No
             </button>
             <button onClick={yesMajorityVote} className="btn btn-success">
