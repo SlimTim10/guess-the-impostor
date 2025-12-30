@@ -15,19 +15,27 @@ const ImpostorGuessing = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h1>The impostor has one chance to guess the secret word</h1>
-      <div>
-        <button onClick={impostorGuessedWrong}>Guessed wrong</button>
-      </div>
-      <div>
-        <button onClick={impostorGuessedRight}>Guessed right</button>
-      </div>
-      <div>
-        <button onClick={openHowToPlay}>How to play</button>
-      </div>
-      <div>
-        <button onClick={openConfirmRestart}>Restart</button>
-      </div>
+      <p className="text-lg">
+        The impostor has one chance to guess the secret word
+      </p>
+      <button onClick={impostorGuessedWrong} className="btn btn-error">
+        Guessed wrong
+      </button>
+      <button onClick={impostorGuessedRight} className="btn btn-success">
+        Guessed right
+      </button>
+      <button
+        onClick={openHowToPlay}
+        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
+      >
+        How to play
+      </button>
+      <button
+        onClick={openConfirmRestart}
+        className="btn btn-secondary btn-xs absolute top-0 left-0 m-2"
+      >
+        Restart
+      </button>
     </>
   )
 }
