@@ -5,7 +5,7 @@ type Props = {
   passToNextPlayerDone: () => void
 }
 
-const SECONDS_TO_PASS_TO_NEXT_PLAYER: number = 5
+const SECONDS_TO_PASS_TO_NEXT_PLAYER: number = 3
 
 const PassToNextPlayer = ({
   passToNextPlayerDone,
