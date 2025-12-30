@@ -1,6 +1,9 @@
 import React from 'react'
+import type { Round } from '../Rounds'
+import { ROUND_LIMIT } from '../Rounds'
 
 type Props = {
+  round: Round
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
   doneSayingWords: () => void
@@ -8,6 +11,7 @@ type Props = {
 }
 
 const SayAWord = ({
+  round,
   openHowToPlay,
   openConfirmRestart,
   doneSayingWords,
@@ -15,6 +19,9 @@ const SayAWord = ({
 }: Props): React.ReactElement => {
   return (
     <>
+      <h2 className="text-lg text-primary">
+        Round {round} of {ROUND_LIMIT}
+      </h2>
       <p className="text-lg">
         Starting with the first player, everyone take a turn to say a word that
         has something to do with the secret word.

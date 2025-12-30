@@ -183,6 +183,7 @@ const App = () => {
       <PassToNextPlayer passToNextPlayerDone={passToNextPlayerDone} />
     ) : view === 'say-a-word' && game !== null ? (
       <SayAWord
+        round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
         doneSayingWords={doneSayingWords}
