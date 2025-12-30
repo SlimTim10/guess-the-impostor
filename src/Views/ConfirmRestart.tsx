@@ -27,6 +27,9 @@ const ConfirmRestart = ({ ref, restart }: Props) => {
           </button>
         </div>
       </div>
+      <form method="dialog" className="modal-backdrop">
+        <button onClick={handleNo}>close</button>
+      </form>
     </dialog>
   )
 }
