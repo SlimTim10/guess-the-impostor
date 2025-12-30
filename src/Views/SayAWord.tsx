@@ -15,13 +15,11 @@ const SayAWord = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <p className="text-lg">
         Starting with the first player, everyone take a turn to say a word that
         has something to do with the secret word.
-      </h2>
-      <p className="text-sm text-warning">
-        But don&#8217;t make it too obvious!
       </p>
+      <p className="text-sm">(But don&#8217;t make it too obvious!)</p>
       <button onClick={doneSayingWords} className="btn btn-primary">
         Everyone said a word
       </button>
