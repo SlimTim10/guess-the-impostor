@@ -36,22 +36,33 @@ const DoneShowingRole = ({
 
   return (
     <>
-      <h1>
+      <h2 className="text-lg text-primary">
         Player {playerTurn} of {game.players.length}
-      </h1>
-      <h1>Don't let anyone else see the screen!</h1>
-      <div>
-        <button onClick={handleShowRoleAgain}>Show role again</button>
-      </div>
-      <div>
-        <button onClick={handleISawIt}>I saw it</button>
-      </div>
-      <div>
-        <button onClick={openHowToPlay}>How to play</button>
-      </div>
-      <div>
-        <button onClick={openConfirmRestart}>Restart</button>
-      </div>
+      </h2>
+      <h2 className="text-lg text-warning">
+        Don&#8217;t let anyone else see the screen!
+      </h2>
+      <button
+        onClick={handleShowRoleAgain}
+        className="btn btn-soft btn-primary"
+      >
+        Show role again
+      </button>
+      <button onClick={handleISawIt} className="btn btn-primary">
+        I saw it
+      </button>
+      <button
+        onClick={openHowToPlay}
+        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
+      >
+        How to play
+      </button>
+      <button
+        onClick={openConfirmRestart}
+        className="btn btn-secondary btn-xs absolute top-0 left-0 m-2"
+      >
+        Restart
+      </button>
     </>
   )
 }
