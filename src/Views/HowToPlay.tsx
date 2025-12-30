@@ -33,11 +33,9 @@ const HowToPlay = ({ ref }: Props) => {
           a word.
         </p>
         <div className="modal-action">
-          <form method="dialog">
-            <button onClick={handleClose} className="btn">
-              Close
-            </button>
-          </form>
+          <button onClick={handleClose} className="btn">
+            Close
+          </button>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">

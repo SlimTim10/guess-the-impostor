@@ -15,10 +15,18 @@ const ConfirmRestart = ({ ref, restart }: Props) => {
   }
 
   return (
-    <dialog closedby="any" ref={ref}>
-      <h1>Are you sure you want to restart?</h1>
-      <button onClick={handleNo}>No</button>
-      <button onClick={handleYes}>Yes</button>
+    <dialog closedby="any" ref={ref} className="modal">
+      <div className="modal-box">
+        <h3 className="font-bold text-lg">Are you sure you want to restart?</h3>
+        <div className="modal-action flex gap-x-2">
+          <button onClick={handleNo} className="btn">
+            No
+          </button>
+          <button onClick={handleYes} className="btn">
+            Yes
+          </button>
+        </div>
+      </div>
     </dialog>
   )
 }
