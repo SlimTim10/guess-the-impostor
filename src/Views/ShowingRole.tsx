@@ -45,15 +45,24 @@ const ShowingRole = ({
 
   return (
     <>
-      <h1>
+      <h2 className="text-lg text-primary">
         Player {playerTurn} of {game.players.length}
-      </h1>
-      <h1>Don&#39;t let anyone else see the screen!</h1>
-      {role === 'impostor' && <h2>You are the impostor!</h2>}
-      {role === 'keeper' && (
-        <h2>You are not the impostor. The secret word is: {game.secretWord}</h2>
-      )}
-      <p>Time left: {timeLeft}</p>
+      </h2>
+      <h2 className="text-lg text-warning">
+        Don&#8217;t let anyone else see the screen!
+      </h2>
+      <p className="text-neutral-content bg-neutral p-2 text-center rounded-field">
+        {role === 'impostor' && <>You are the impostor!</>}
+        {role === 'keeper' && (
+          <>
+            You are not the impostor.
+            <br />
+            The secret word is:{' '}
+            <span className="font-bold">{game.secretWord}</span>
+          </>
+        )}
+      </p>
+      <p className="absolute bottom-0">Time left: {timeLeft}</p>
       {/* <TimeLeftBar totalTime={totalTime} timeLeft={timeLeft} interval={interval} /> */}
     </>
   )

@@ -26,7 +26,7 @@ const ShowRole = ({
         Player {playerTurn} of {game.players.length}
       </h2>
       <h2 className="text-lg text-warning">
-        Don't let anyone else see the screen!
+        Don&#8217;t let anyone else see the screen!
       </h2>
       <button onClick={handleShowRole} className="btn btn-primary">
         Show my role
