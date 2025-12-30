@@ -14,14 +14,20 @@ const ImpostorWins = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h1>Impostor wins!</h1>
-      <p>The secret word was: {game.secretWord}</p>
-      <div>
-        <button onClick={playAgain}>Play again</button>
-      </div>
-      <div>
-        <button onClick={openHowToPlay}>How to play</button>
-      </div>
+      <p className="text-lg">Impostor wins!</p>
+      <p className="text-neutral-content bg-neutral p-2 text-center rounded-field">
+        The secret word was:{' '}
+        <span className="font-bold">{game.secretWord}</span>
+      </p>
+      <button onClick={playAgain} className="btn btn-primary">
+        Play again
+      </button>
+      <button
+        onClick={openHowToPlay}
+        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
+      >
+        How to play
+      </button>
     </>
   )
 }
