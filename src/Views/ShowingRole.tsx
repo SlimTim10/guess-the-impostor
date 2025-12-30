@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Game } from '../Game'
 import type { PlayerRole } from '../PlayerRoles'
+import TimeLeftBar from '../TimeLeftBar'
 
 type Props = {
   game: Game
@@ -16,32 +17,6 @@ const ShowingRole = ({
   doneShowingRole,
 }: Props): React.ReactElement => {
   const role: PlayerRole = game.players[playerTurn - 1]
-  const [timeLeft, setTimeLeft] = React.useState<number>(SECONDS_TO_SHOW_ROLE)
-
-  React.useEffect(() => {
-    const countdownId: number = setInterval(() => {
-      setTimeLeft((x) => {
-        if (x - 1 >= 0) {
-          return x - 1
-        } else {
-          clearInterval(countdownId)
-          return x
-        }
-      })
-    }, 1000)
-
-    const cleanup = (): void => {
-      clearInterval(countdownId)
-    }
-
-    return cleanup
-  }, [])
-
-  React.useEffect(() => {
-    if (timeLeft === 0) {
-      doneShowingRole()
-    }
-  }, [timeLeft])
 
   return (
     <>
@@ -62,8 +37,12 @@ const ShowingRole = ({
           </>
         )}
       </p>
-      <p className="absolute bottom-0">Time left: {timeLeft}</p>
-      {/* <TimeLeftBar totalTime={totalTime} timeLeft={timeLeft} interval={interval} /> */}
+      <TimeLeftBar
+        barWidth="100vw"
+        className="absolute bottom-0 left-0 h-8 bg-primary"
+        totalTime={SECONDS_TO_SHOW_ROLE * 1000}
+        onTimeUp={doneShowingRole}
+      />
     </>
   )
 }
