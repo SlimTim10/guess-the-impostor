@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Game } from '../Game'
+import HowToPlayButton from './Pieces/HowToPlayButton'
 
 type Props = {
   game: Game
@@ -22,12 +23,7 @@ const KeepersWin = ({
       <button onClick={playAgain} className="btn btn-primary">
         Play again
       </button>
-      <button
-        onClick={openHowToPlay}
-        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
-      >
-        How to play
-      </button>
+      <HowToPlayButton openHowToPlay={openHowToPlay} />
     </>
   )
 }

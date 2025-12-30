@@ -1,6 +1,8 @@
 import React from 'react'
 import type { Round } from '../Rounds'
 import { ROUND_LIMIT } from '../Rounds'
+import HowToPlayButton from './Pieces/HowToPlayButton'
+import RestartButton from './Pieces/RestartButton'
 
 type Props = {
   round: Round
@@ -58,18 +60,8 @@ const Voting = ({
           </div>
         </>
       )}
-      <button
-        onClick={openHowToPlay}
-        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
-      >
-        How to play
-      </button>
-      <button
-        onClick={openConfirmRestart}
-        className="btn btn-secondary btn-xs absolute top-0 left-0 m-2"
-      >
-        Restart
-      </button>
+      <HowToPlayButton openHowToPlay={openHowToPlay} />
+      <RestartButton openConfirmRestart={openConfirmRestart} />
     </>
   )
 }

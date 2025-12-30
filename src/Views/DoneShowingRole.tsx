@@ -1,5 +1,7 @@
 import React from 'react'
 import type { Game } from '../Game'
+import HowToPlayButton from './Pieces/HowToPlayButton'
+import RestartButton from './Pieces/RestartButton'
 
 type Props = {
   game: Game
@@ -51,18 +53,8 @@ const DoneShowingRole = ({
       <button onClick={handleISawIt} className="btn btn-primary">
         I saw it
       </button>
-      <button
-        onClick={openHowToPlay}
-        className="btn btn-info btn-xs absolute top-0 right-0 m-2"
-      >
-        How to play
-      </button>
-      <button
-        onClick={openConfirmRestart}
-        className="btn btn-secondary btn-xs absolute top-0 left-0 m-2"
-      >
-        Restart
-      </button>
+      <HowToPlayButton openHowToPlay={openHowToPlay} />
+      <RestartButton openConfirmRestart={openConfirmRestart} />
     </>
   )
 }
