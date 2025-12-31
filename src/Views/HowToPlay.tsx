@@ -10,10 +10,10 @@ const HowToPlay = ({ ref }: Props) => {
   }
 
   return (
-    <dialog closedby="any" ref={ref} className="modal">
+    <dialog closedby="any" ref={ref} className="modal modal-middle">
       <div className="modal-box">
         <h3 className="font-bold text-lg">How to play</h3>
-        <p className="py-4">
+        <p className="py-2 text-sm">
           This is an <strong>in-person</strong>, <strong>one phone</strong> game
           for 3 or more players. Be ready to pass the phone around!
           <br />
