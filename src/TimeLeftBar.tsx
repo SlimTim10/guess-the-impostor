@@ -12,9 +12,9 @@ type Props = {
 
 function TimeLeftBar({
   barWidth,
-  barHeight = '20px',
-  barColor = 'blue',
-  borderRadius = '0px',
+  barHeight,
+  barColor,
+  borderRadius,
   totalTime,
   onTimeUp,
   className = '',
