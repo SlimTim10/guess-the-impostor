@@ -27,7 +27,7 @@ const Voting = ({
       {round < ROUND_LIMIT && (
         <>
           <p className="text-lg">
-            Talk amongst yourselves and cast your votes on who you think is the
+            Talk among yourselves and cast your votes on who you think is the
             impostor!
           </p>
           <p className="text-sm">(Any player may abstain from voting)</p>
@@ -45,7 +45,7 @@ const Voting = ({
       {round === ROUND_LIMIT && (
         <>
           <p className="text-lg">
-            Talk amongst yourselves and cast your votes on who you think is the
+            Talk among yourselves and cast your votes on who you think is the
             impostor!
           </p>
           <p className="text-sm">(This is your last chance!)</p>
