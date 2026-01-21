@@ -11,8 +11,14 @@ type Props = {
 
 const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
   const playersInputId = React.useId()
+  const [playersInputValue, setPlayersInputValue] = React.useState<string>(
+    String(numPlayers),
+  )
 
+  // To allow any numbers to be typed in the input, separate the input value
+  // from the numPlayers state. Use string for better user experience.
   const handlePlayersChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setPlayersInputValue(e.currentTarget.value)
     const n: number = Number(e.currentTarget.value)
     if (isNumberOfPlayers(n)) {
       setNumPlayers(n)
@@ -20,7 +26,8 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
   }
 
   const handlePlayButton = (_e: React.MouseEvent<HTMLButtonElement>): void => {
-    play()
+    // Only play if number is valid (player number values are in sync)
+    numPlayers === Number(playersInputValue) && play()
   }
 
   return (
@@ -31,15 +38,20 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
       <label htmlFor="players" className="text-lg">
         How many players?
       </label>
-      <input
-        id={playersInputId}
-        name="players"
-        type="number"
-        value={numPlayers}
-        onChange={handlePlayersChange}
-        min={MIN_PLAYERS}
-        max="99"
-      />
+      <div>
+        <input
+          id={playersInputId}
+          name="players"
+          type="number"
+          value={playersInputValue}
+          onChange={handlePlayersChange}
+          min={MIN_PLAYERS}
+          max="99"
+          className="input validator w-24 text-3xl"
+          required
+        />
+        <p className="validator-hint">Must be at least 3</p>
+      </div>
       <button onClick={handlePlayButton} className="btn btn-primary">
         Play
       </button>
