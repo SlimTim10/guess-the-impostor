@@ -235,7 +235,7 @@ const App = () => {
   }
 
   return (
-    <main className="bg-base-100 h-screen w-screen m-0 flex flex-col place-items-center place-content-center gap-y-4 p-2">
+    <main className="bg-base-100 h-screen w-screen m-0 flex flex-col place-items-center place-content-center gap-y-10 p-2">
       {viewComponent}
       {[
         'initial',

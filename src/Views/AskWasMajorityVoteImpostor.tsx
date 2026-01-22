@@ -17,13 +17,25 @@ const AskWasMajorityVoteImpostor = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <p className="text-lg">Was the majority vote on the impostor?</p>
-      <p className="text-sm">(Impostor, you can now reveal yourself!)</p>
-      <div className="flex gap-x-2">
-        <button onClick={majorityVoteWasNotImposter} className="btn btn-error">
+      <div>
+        <p className="text-xl text-center">
+          Was the majority vote on the impostor?
+        </p>
+        <p className="text-md text-center">
+          (Impostor, you can now reveal yourself!)
+        </p>
+      </div>
+      <div className="flex flex-col gap-y-2 w-100">
+        <button
+          onClick={majorityVoteWasNotImposter}
+          className="btn btn-error btn-xl btn-block"
+        >
           No
         </button>
-        <button onClick={majorityVoteWasImposter} className="btn btn-success">
+        <button
+          onClick={majorityVoteWasImposter}
+          className="btn btn-success btn-xl btn-block"
+        >
           Yes
         </button>
       </div>

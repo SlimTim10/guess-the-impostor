@@ -12,7 +12,9 @@ const PassToNextPlayer = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <p className="text-lg text-primary">Pass to the next player</p>
+      <p className="text-primary text-3xl text-center">
+        Pass to the next player
+      </p>
       <TimeLeftBar
         barWidth="100vw"
         className="absolute bottom-0 left-0 h-8 bg-primary"

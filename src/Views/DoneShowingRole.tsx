@@ -38,20 +38,23 @@ const DoneShowingRole = ({
 
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <h2 className="text-xl text-primary">
         Player {playerTurn} of {game.players.length}
       </h2>
-      <p className="text-lg text-warning">
+      <p className="text-xl text-warning">
         Don&#8217;t let anyone else see the screen!
       </p>
       <button
+        onClick={handleISawIt}
+        className="btn btn-primary btn-xl btn-block"
+      >
+        I saw it
+      </button>
+      <button
         onClick={handleShowRoleAgain}
-        className="btn btn-soft btn-primary"
+        className="btn btn-soft btn-primary btn-xl btn-block"
       >
         Show role again
-      </button>
-      <button onClick={handleISawIt} className="btn btn-primary">
-        I saw it
       </button>
       <HowToPlayButton openHowToPlay={openHowToPlay} />
       <RestartButton openConfirmRestart={openConfirmRestart} />

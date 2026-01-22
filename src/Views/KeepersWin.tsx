@@ -15,12 +15,12 @@ const KeepersWin = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <p className="text-lg">Keepers win!</p>
-      <p className="text-neutral-content bg-neutral p-2 text-center rounded-field">
+      <p className="text-3xl text-success text-center">Keepers win!</p>
+      <p className="text-2xl text-neutral-content bg-neutral p-2 text-center rounded-field">
         The secret word was:{' '}
         <span className="font-bold">{game.secretWord}</span>
       </p>
-      <button onClick={playAgain} className="btn btn-primary">
+      <button onClick={playAgain} className="btn btn-primary btn-xl btn-block">
         Play again
       </button>
       <HowToPlayButton openHowToPlay={openHowToPlay} />

@@ -32,10 +32,10 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
 
   return (
     <>
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
+      <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold mb-8">
         Guess The Impostor
       </h1>
-      <label htmlFor="players" className="text-lg">
+      <label htmlFor="players" className="text-2xl">
         How many players?
       </label>
       <div>
@@ -52,7 +52,7 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
         />
         <p className="validator-hint">Must be at least 3</p>
       </div>
-      <button onClick={handlePlayButton} className="btn btn-primary">
+      <button onClick={handlePlayButton} className="btn btn-primary btn-xl">
         Play
       </button>
       <button onClick={openHowToPlay} className="btn btn-secondary">

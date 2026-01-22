@@ -21,22 +21,32 @@ const Voting = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <h2 className="text-xl text-primary">
         Round {round} of {ROUND_LIMIT}
       </h2>
       {round < ROUND_LIMIT && (
         <>
-          <p className="text-lg">
-            Talk among yourselves and cast your votes on who you think is the
-            impostor!
-          </p>
-          <p className="text-sm">(Any player may abstain from voting)</p>
-          <p className="text-lg">Is there a majority vote?</p>
-          <div className="flex gap-x-2">
-            <button onClick={noMajorityVote} className="btn btn-error">
+          <div>
+            <p className="text-xl text-center">
+              Talk among yourselves and cast your votes on who you think is the
+              impostor!
+            </p>
+            <p className="text-md text-center">
+              (Any player may abstain from voting)
+            </p>
+          </div>
+          <p className="text-xl">Is there a majority vote?</p>
+          <div className="flex flex-col gap-y-2 w-100">
+            <button
+              onClick={noMajorityVote}
+              className="btn btn-error btn-xl btn-block"
+            >
               No
             </button>
-            <button onClick={yesMajorityVote} className="btn btn-success">
+            <button
+              onClick={yesMajorityVote}
+              className="btn btn-success btn-xl btn-block"
+            >
               Yes
             </button>
           </div>
@@ -44,17 +54,22 @@ const Voting = ({
       )}
       {round === ROUND_LIMIT && (
         <>
-          <p className="text-lg">
-            Talk among yourselves and cast your votes on who you think is the
-            impostor!
-          </p>
-          <p className="text-sm">(This is your last chance!)</p>
-          <p className="text-lg">Is there a majority vote?</p>
-          <div className="flex gap-x-2">
-            <button className="btn" disabled={true}>
+          <div>
+            <p className="text-xl text-center">
+              Talk among yourselves and cast your votes on who you think is the
+              impostor!
+            </p>
+            <p className="text-md text-center">(This is your last chance!)</p>
+          </div>
+          <p className="text-xl">Is there a majority vote?</p>
+          <div className="flex flex-col gap-y-2 w-100">
+            <button disabled={true} className="btn btn-xl btn-block">
               No
             </button>
-            <button onClick={yesMajorityVote} className="btn btn-success">
+            <button
+              onClick={yesMajorityVote}
+              className="btn btn-success btn-xl btn-block"
+            >
               Yes
             </button>
           </div>

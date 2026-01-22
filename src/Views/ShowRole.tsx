@@ -24,13 +24,16 @@ const ShowRole = ({
 
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <h2 className="text-xl text-primary">
         Player {playerTurn} of {game.players.length}
       </h2>
-      <p className="text-lg text-warning">
+      <p className="text-xl text-warning">
         Don&#8217;t let anyone else see the screen!
       </p>
-      <button onClick={handleShowRole} className="btn btn-primary">
+      <button
+        onClick={handleShowRole}
+        className="btn btn-primary btn-xl btn-block"
+      >
         Show my role
       </button>
       <HowToPlayButton openHowToPlay={openHowToPlay} />

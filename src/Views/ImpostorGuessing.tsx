@@ -17,13 +17,19 @@ const ImpostorGuessing = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <p className="text-lg">
+      <p className="text-xl text-center">
         The impostor has one chance to guess the secret word
       </p>
-      <button onClick={impostorGuessedWrong} className="btn btn-error">
+      <button
+        onClick={impostorGuessedWrong}
+        className="btn btn-error btn-xl btn-block"
+      >
         Guessed wrong
       </button>
-      <button onClick={impostorGuessedRight} className="btn btn-success">
+      <button
+        onClick={impostorGuessedRight}
+        className="btn btn-success btn-xl btn-block"
+      >
         Guessed right
       </button>
       <HowToPlayButton openHowToPlay={openHowToPlay} />

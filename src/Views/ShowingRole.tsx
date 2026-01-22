@@ -20,13 +20,13 @@ const ShowingRole = ({
 
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <h2 className="text-xl text-primary">
         Player {playerTurn} of {game.players.length}
       </h2>
-      <p className="text-lg text-warning">
+      <p className="text-xl text-warning">
         Don&#8217;t let anyone else see the screen!
       </p>
-      <p className="text-neutral-content bg-neutral p-2 text-center rounded-field">
+      <p className="text-2xl text-neutral-content bg-neutral p-2 text-center rounded-field">
         {role === 'impostor' && <>You are the impostor!</>}
         {role === 'keeper' && (
           <>

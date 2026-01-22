@@ -21,20 +21,27 @@ const SayAWord = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h2 className="text-lg text-primary">
+      <h2 className="text-xl text-primary">
         Round {round} of {ROUND_LIMIT}
       </h2>
-      <p className="text-lg">
-        Starting with the first player, everyone take a turn to say a word that
-        has something to do with the secret word.
-      </p>
-      <p className="text-sm">(But don&#8217;t make it too obvious!)</p>
-      <button onClick={doneSayingWords} className="btn btn-primary">
+      <div>
+        <p className="text-xl text-center">
+          Starting with the first player, everyone take a turn to say a word
+          that has something to do with the secret word.
+        </p>
+        <p className="text-md text-center">
+          (But don&#8217;t make it too obvious!)
+        </p>
+      </div>
+      <button
+        onClick={doneSayingWords}
+        className="btn btn-primary btn-xl btn-block"
+      >
         Everyone said a word
       </button>
       <button
         onClick={impostorSaidSecretWord}
-        className="btn btn-primary btn-soft btn-sm"
+        className="btn btn-primary btn-soft btn-lg btn-block"
       >
         The impostor said the secret word!
       </button>
