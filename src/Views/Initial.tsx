@@ -1,6 +1,7 @@
 import React from 'react'
 import type { NumberOfPlayers } from '../ValidPlayers'
 import { MIN_PLAYERS, isNumberOfPlayers } from '../ValidPlayers'
+import HowToPlayButton from './Pieces/HowToPlayButton'
 
 type Props = {
   play: () => void
@@ -55,9 +56,7 @@ const Initial = ({ play, openHowToPlay, numPlayers, setNumPlayers }: Props) => {
       <button onClick={handlePlayButton} className="btn btn-primary btn-xl">
         Play
       </button>
-      <button onClick={openHowToPlay} className="btn btn-secondary">
-        How to play
-      </button>
+      <HowToPlayButton openHowToPlay={openHowToPlay} />
     </>
   )
 }
