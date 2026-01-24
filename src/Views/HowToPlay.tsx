@@ -12,8 +12,12 @@ const HowToPlay = ({ ref }: Props) => {
   return (
     <dialog closedby="any" ref={ref} className="modal modal-middle">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">How to play</h3>
-        <p className="py-2 text-sm">
+        <h3 className="font-bold text-xl">
+          How to play
+          {/* Hack to prevent auto-scrolling to bottom button */}
+          <button>&nbsp;</button>{' '}
+        </h3>
+        <p className="py-2 text-lg">
           This is an <strong>in-person</strong>, <strong>one phone</strong> game
           for 3 or more players. Be ready to pass the phone around!
           <br />
@@ -33,7 +37,7 @@ const HowToPlay = ({ ref }: Props) => {
           a word.
         </p>
         <div className="modal-action">
-          <button onClick={handleClose} className="btn">
+          <button onClick={handleClose} className="btn btn-neutral btn-lg">
             Close
           </button>
         </div>
