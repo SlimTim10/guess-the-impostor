@@ -9,6 +9,7 @@ type Props = {
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
   startShowingRole: () => void
+  goBackToPrevRole: () => void
 }
 
 const ShowRole = ({
@@ -17,6 +18,7 @@ const ShowRole = ({
   openHowToPlay,
   openConfirmRestart,
   startShowingRole,
+  goBackToPrevRole,
 }: Props): React.ReactElement => {
   const handleShowRole = (_e: React.MouseEvent<HTMLButtonElement>): void => {
     startShowingRole()
@@ -24,7 +26,7 @@ const ShowRole = ({
 
   return (
     <>
-      <h2 className="text-xl text-primary">
+      <h2 className="text-3xl text-primary">
         Player {playerTurn} of {game.players.length}
       </h2>
       <p className="text-xl text-warning">
@@ -36,6 +38,15 @@ const ShowRole = ({
       >
         Show my role
       </button>
+      {playerTurn > 1 && (
+        <button
+          onClick={goBackToPrevRole}
+          className="btn btn-soft btn-primary btn-xl btn-block"
+        >
+          Go back to previous player
+        </button>
+      )}
+
       <HowToPlayButton openHowToPlay={openHowToPlay} />
       <RestartButton openConfirmRestart={openConfirmRestart} />
     </>

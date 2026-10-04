@@ -3,7 +3,6 @@ export type View =
   | 'confirm-restart'
   | 'show-role'
   | 'showing-role'
-  | 'done-showing-role'
   | 'pass-to-next-player'
   | 'say-a-word'
   | 'voting'
@@ -23,7 +22,6 @@ export const isView = (str: string): str is View => {
     case 'confirm-restart':
     case 'show-role':
     case 'showing-role':
-    case 'done-showing-role':
     case 'pass-to-next-player':
     case 'say-a-word':
     case 'voting':

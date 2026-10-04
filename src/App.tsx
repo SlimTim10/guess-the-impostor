@@ -12,7 +12,6 @@ import type { View } from './Views'
 import { isView } from './Views'
 import AskWasMajorityVoteImpostor from './Views/AskWasMajorityVoteImpostor'
 import ConfirmRestart from './Views/ConfirmRestart'
-import DoneShowingRole from './Views/DoneShowingRole'
 import HowToPlay from './Views/HowToPlay'
 import ImpostorGuessing from './Views/ImpostorGuessing'
 import ImpostorWins from './Views/ImpostorWins'
@@ -78,8 +77,9 @@ const App = () => {
     setView('showing-role')
   }
 
-  const doneShowingRole = (): void => {
-    setView('done-showing-role')
+  const goBackToPrevRole = (): void => {
+    setView('show-role')
+    setPlayerTurn((x) => x - 1)
   }
 
   const passToNextPlayer = (): void => {
@@ -166,20 +166,12 @@ const App = () => {
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}
         startShowingRole={startShowingRole}
+        goBackToPrevRole={goBackToPrevRole}
       />
     ) : view === 'showing-role' && game !== null ? (
       <ShowingRole
         game={game}
         playerTurn={playerTurn}
-        doneShowingRole={doneShowingRole}
-      />
-    ) : view === 'done-showing-role' && game !== null ? (
-      <DoneShowingRole
-        game={game}
-        playerTurn={playerTurn}
-        openHowToPlay={openHowToPlay}
-        openConfirmRestart={openConfirmRestart}
-        startShowingRole={startShowingRole}
         passToNextPlayer={passToNextPlayer}
         lastPlayerSawRole={lastPlayerSawRole}
       />
@@ -240,7 +232,6 @@ const App = () => {
       {[
         'initial',
         'show-role',
-        'done-showing-role',
         'say-a-word',
         'voting',
         'ask-was-majority-vote-impostor',
@@ -250,7 +241,6 @@ const App = () => {
       ].includes(view) && <HowToPlay ref={howToPlayRef} />}
       {[
         'show-role',
-        'done-showing-role',
         'say-a-word',
         'voting',
         'ask-was-majority-vote-impostor',

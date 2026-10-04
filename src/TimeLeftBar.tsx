@@ -23,13 +23,18 @@ function TimeLeftBar({
 
   React.useEffect(() => {
     // Trigger the transition
-    setTimeout(() => {
+    const widthTimeoutId: number = setTimeout(() => {
       setWidth('0px')
     }, 10)
 
-    setTimeout(() => {
+    const timeUpTimeoutId: number = setTimeout(() => {
       onTimeUp()
     }, totalTime)
+
+    return () => {
+      clearTimeout(widthTimeoutId)
+      clearTimeout(timeUpTimeoutId)
+    }
   }, [])
 
   const progressBarStyle = {

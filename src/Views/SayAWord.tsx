@@ -21,7 +21,7 @@ const SayAWord = ({
 }: Props): React.ReactElement => {
   return (
     <>
-      <h2 className="text-xl text-primary">
+      <h2 className="text-3xl text-primary">
         Round {round} of {ROUND_LIMIT}
       </h2>
       <div>

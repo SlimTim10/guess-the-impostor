@@ -6,7 +6,8 @@ import TimeLeftBar from '../TimeLeftBar'
 type Props = {
   game: Game
   playerTurn: number
-  doneShowingRole: () => void
+  passToNextPlayer: () => void
+  lastPlayerSawRole: () => void
 }
 
 const SECONDS_TO_SHOW_ROLE: number = 5
@@ -14,13 +15,22 @@ const SECONDS_TO_SHOW_ROLE: number = 5
 const ShowingRole = ({
   game,
   playerTurn,
-  doneShowingRole,
+  passToNextPlayer,
+  lastPlayerSawRole,
 }: Props): React.ReactElement => {
   const role: PlayerRole = game.players[playerTurn - 1]
 
+  const handleTimeUp = (): void => {
+    if (playerTurn === game.players.length) {
+      lastPlayerSawRole()
+    } else {
+      passToNextPlayer()
+    }
+  }
+
   return (
     <>
-      <h2 className="text-xl text-primary">
+      <h2 className="text-3xl text-primary">
         Player {playerTurn} of {game.players.length}
       </h2>
       <p className="text-xl text-warning">
@@ -41,7 +51,7 @@ const ShowingRole = ({
         barWidth="100vw"
         className="absolute bottom-0 left-0 h-8 bg-primary"
         totalTime={SECONDS_TO_SHOW_ROLE * 1000}
-        onTimeUp={doneShowingRole}
+        onTimeUp={handleTimeUp}
       />
     </>
   )
