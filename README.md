@@ -1,11 +1,19 @@
 # Development
 
-Terminal 1: `npm run dev`
+## Prerequisites
 
-Terminal 2: `npm run tsc`
+- [nix](https://nixos.org/download/)
+- [devenv](https://devenv.sh/) >= 2.1
+- [direnv](https://direnv.net/)
 
-Terminal 3: `npm run prettier-watch`
+## Start dev environment
 
-## Emacs
+```bash
+devenv --profile dev up
+```
 
-Run `dev.el`
+## Expose to the internet
+
+``` bash
+nix develop --command ngrok http 5173
+```
