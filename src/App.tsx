@@ -78,8 +78,10 @@ const App = () => {
   }
 
   const goBackToPrevRole = (): void => {
-    setView('show-role')
-    setPlayerTurn((x) => x - 1)
+    if (playerTurn > 1) {
+      setView('show-role')
+      setPlayerTurn((x) => x - 1)
+    }
   }
 
   const passToNextPlayer = (): void => {
