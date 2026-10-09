@@ -30,7 +30,8 @@ const SayAWord = ({
           that has something to do with the secret word.
         </p>
         <p className="text-md text-center">
-          (But don&#8217;t make it too obvious!)
+          (But don&#8217;t make it too obvious! If the impostor says the secret
+          word, they win immediately!)
         </p>
       </div>
       <button
