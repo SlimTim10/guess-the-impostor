@@ -56,10 +56,8 @@ const Voting = ({
         <>
           <div>
             <p className="text-xl text-center">
-              Talk among yourselves and cast your votes on who you think is the
-              impostor!
+              This is your last chance to catch the impostor!
             </p>
-            <p className="text-md text-center">(This is your last chance!)</p>
           </div>
           <p className="text-xl">Is there a majority vote?</p>
           <div className="flex flex-col gap-y-2 w-100">
