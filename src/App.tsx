@@ -189,6 +189,7 @@ const App = () => {
       />
     ) : view === 'voting' && game !== null ? (
       <Voting
+        game={game}
         round={round}
         openHowToPlay={openHowToPlay}
         openConfirmRestart={openConfirmRestart}

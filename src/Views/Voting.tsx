@@ -1,10 +1,12 @@
 import React from 'react'
+import type { Game } from '../Game'
 import type { Round } from '../Rounds'
 import { ROUND_LIMIT } from '../Rounds'
 import HowToPlayButton from './Pieces/HowToPlayButton'
 import RestartButton from './Pieces/RestartButton'
 
 type Props = {
+  game: Game
   round: Round
   openHowToPlay: (e: React.MouseEvent<HTMLButtonElement>) => void
   openConfirmRestart: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -12,7 +14,10 @@ type Props = {
   yesMajorityVote: () => void
 }
 
+const majority = (x: number): number => Math.floor(x / 2) + 1
+
 const Voting = ({
+  game,
   round,
   openHowToPlay,
   openConfirmRestart,
@@ -35,7 +40,13 @@ const Voting = ({
               (Any player may abstain from voting)
             </p>
           </div>
-          <p className="text-xl">Is there a majority vote?</p>
+          <div>
+            <p className="text-xl text-center">Is there a majority vote?</p>
+            <p className="text-md text-center">
+              (Are there at least {majority(game.players.length)} votes on a
+              particular player?)
+            </p>
+          </div>
           <div className="flex flex-col gap-y-2 w-100">
             <button
               onClick={noMajorityVote}
